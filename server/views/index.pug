@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+    form(action="/" method="POST")
+      input(type="text", style="margin-bottom:20px;" name="name" placeholder="Product name ...") 
+      br
+      input(type="text", style="margin-bottom:20px;" name="sale" placeholder="Product sale ...") 
+      br
+      input(type="text", style="margin-bottom:20px;" name="price" placeholder="Product price ...") 
+      br
+      input(type="text", style="margin-bottom:20px;" name="img" placeholder="Product img ...") 
+      br
+      input(type="text", style="margin-bottom:20px;" name="category" placeholder="Product category ...") 
+      br
+      textarea(
+      name="description",
+      cols="30",
+      rows="10"
+      placeholder="Product description ..."
+      style="resize:none;"
+      )
+      br
+      button(type="submit") send
