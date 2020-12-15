@@ -10,7 +10,7 @@
         <v-col cols="12" md="6" class="py-0">
           <v-card class="text-center cardHover" elevation="0" max-width="100%">
             <v-row>
-              <v-col cols="6" class="pa-0 pl-3">
+              <v-col cols="12" sm="6" class="pa-0 pl-3">
                 <v-hover v-slot="{ hover }">
                   <v-img
                     src="https://i.ibb.co/8mwVm23/Lacafone-Tea-Tree-Poduim.jpg"
@@ -30,7 +30,8 @@
                 </v-hover>
               </v-col>
               <v-col
-                cols="6"
+                cols="12"
+                sm="6"
                 class="py-6 d-flex justify-center align-center flex-column"
               >
                 <v-card-title class="justify-center">
@@ -58,7 +59,8 @@
           <v-card elevation="0" class="text-center cardHover" max-width="100%">
             <v-row>
               <v-col
-                cols="6"
+                cols="12"
+                sm="6"
                 class="py-6 d-flex justify-center align-center flex-column"
               >
                 <v-card-title class="justify-center ">
@@ -81,7 +83,7 @@
                   </v-btn>
                 </v-card-actions>
               </v-col>
-              <v-col cols="6" class="pa-0 pr-3">
+              <v-col cols="12" sm="6" class="pa-0 pr-3">
                 <v-hover v-slot="{ hover }">
                   <v-img
                     src="https://i.ibb.co/8mwVm23/Lacafone-Tea-Tree-Poduim.jpg"
