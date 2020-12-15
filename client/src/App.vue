@@ -28,7 +28,7 @@
         <v-badge
           :content="22"
           :value="22"
-          :color="n.icon ? 'warning' : 'transparent'"
+          :color="n.icon ? '#ff9d72' : 'transparent'"
           overlap
         >
           <v-btn
@@ -120,10 +120,10 @@ export default {
 .btn_text{
   transition:.3s;
   &:hover{
-    color:#ffae33;
+    color:#ff9d72;
   }
   &_active{
-    color:#ffae33;
+    color:#ff9d72;
   }
 }
 .itemHref{

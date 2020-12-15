@@ -1,7 +1,7 @@
 <template>
 <div
   class="dialog py-15"
->
+ >
   <div class="overlay" @click="$emit('dialogFalse', false)">
     <v-btn
       icon

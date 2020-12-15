@@ -2,14 +2,14 @@
   <v-card
     class="mx-auto"
     :ripple="false"
-  >
+    >
     <div v-if="sale" class="product_sale">
       SALE
     </div>
     <v-img
       style="cursor:pointer;"
       @click="selectCart()"
-      v-ripple="{class: 'warning--text'}"
+      v-ripple="{class: '#00bf54'}"
       class="white--text align-end"
       height="200px"
       :src="img"
@@ -21,7 +21,6 @@
     <v-card-text style="cursor:pointer;" @click="selectCart()" class="text--primary pb-2">
       <div>{{name}}</div>
     </v-card-text>
-
     <v-card-actions class="px-4">
       <v-row class="ma-0">
         <v-col class="pt-1 pb-1 px-0"  cols="12" md="6">
@@ -34,7 +33,8 @@
         </v-col>
         <v-col class="pt-1 pb-1 px-0" cols="12" md="6">
           <v-btn
-            color="#fb8c00"
+            color="#ffd66b"
+            class="cardBtn"
             @click="selectCart()"
           >
             В корзину
@@ -109,8 +109,8 @@ export default {
   z-index: 5;
    height: 40px;
   width: 85px;
-  background: #393939;
-  color:#fb8c00;
+  background: #ff9d72;
+  color:#f4f4f4;
   font-weight: 500;
   transform: rotate(-90deg);
   border-radius: 0 !important;
@@ -122,5 +122,8 @@ export default {
 .line{
   color: gray;
   text-decoration: line-through;
+}
+.cardBtn{
+  color: #f4f4f4;
 }
 </style>

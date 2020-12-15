@@ -5,7 +5,7 @@
       <swiper-slide
         v-for="n in banners"
         :key="n"
-        :style="`background : url(${require(`../assets/images/${n}`)})no-repeat center center / cover;`"
+        :style="`background : url(${require(`../assets/images/${n}`)}) no-repeat center center / cover;`"
         class="swiperSlide"
       >
       </swiper-slide>
@@ -19,13 +19,24 @@
     <v-col v-for="n in products" :key="n" cols="6" xl="2" lg="3" md="4">
       <Card  v-bind="n" @cartId="selectId" />
     </v-col>
-  </v-row>
+   </v-row>
+  </v-container>
+  <Special/>
+  <v-container class="pt-15">
+    <Dialog v-bind="productPush" v-if="dialog" @dialogFalse="dialogFalse()"/>
+    <h1 class="text-center">NEW ARRIVAL</h1>
+     <v-row>
+    <v-col v-for="n in products" :key="n" cols="6" xl="2" lg="3" md="4">
+      <Card  v-bind="n" @cartId="selectId" />
+    </v-col>
+   </v-row>
   </v-container>
 </div>
 </template>
 <script>
 import axios from 'axios'
 import Card from '../components/card'
+import Special from '../components/special.vue'
 import Dialog from '../components/dialog'
 import SwiperCore , {Pagination, EffectFade} from 'swiper'
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
@@ -53,6 +64,7 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+    Special,
     Dialog,
     Card
   },
