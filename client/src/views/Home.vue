@@ -6,10 +6,11 @@
           v-for="n in banners"
           :key="n"
           :style="
-            `background : url(${require(`../assets/images/${n}`)}) no-repeat center center / cover;`
+            `background : url(${n.img}) no-repeat center center / cover;`
           "
-          class="swiperSlide"
+          class="swiperSlide d-flex justify-center align-center"
         >
+        <h1>{{n.text}}</h1>
         </swiper-slide>
       </swiper>
       <div class="swiper-pagination swiperPag" slot="pagination"></div>
@@ -17,7 +18,7 @@
     <v-container class="pt-15">
       <Dialog v-bind="productPush" v-if="dialog" @dialogFalse="dialogFalse()" />
       <h1 class="text-center">BEST SELLER</h1>
-      <v-row>
+      <v-row class="justify-center">
         <v-col
           v-for="n in products"
           :key="n"
@@ -35,7 +36,7 @@
     <v-container class="pt-15">
       <Dialog v-bind="productPush" v-if="dialog" @dialogFalse="dialogFalse()" />
       <h1 class="text-center">NEW ARRIVAL</h1>
-      <v-row>
+      <v-row class="justify-center">
         <v-col
           v-for="n in products"
           :key="n"
@@ -60,17 +61,34 @@ import Special from "../components/special.vue";
 import Instagram from "../components/instagram.vue";
 import Dialog from "../components/dialog";
 import SuperSale from "../components/superSale.vue";
-import SwiperCore, { Pagination, EffectFade } from "swiper";
+import SwiperCore, { Pagination, EffectFade, Autoplay } from "swiper";
 import { Swiper, SwiperSlide, directive } from "vue-awesome-swiper";
 import "swiper/swiper-bundle.css";
-SwiperCore.use([Pagination, EffectFade]);
+SwiperCore.use([Pagination, EffectFade, Autoplay]);
 export default {
   data() {
     return {
-      banners: ["1.jpg", "2.jpg", "3.jpg"],
+      banners: [
+        {
+          img:"https://cdn.shopify.com/s/files/1/0265/6534/5322/files/slide1.jpg?v=1586335554",
+          text:'ALL'
+        }, 
+        {
+          img:"https://www.ivl.com/Content/Html/MAKANA/images/bg-1.jpg",
+          text:'FOR'
+        }, 
+        {
+          img:"https://skincare.7uptheme.net/wp-content/uploads/2019/07/slider18b.jpg",
+          text:'YOU'
+        }
+      ],
       swiperOptions: {
         loop: true,
         effect: "fade",
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false
+        },
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
@@ -131,7 +149,13 @@ export default {
 <style lang="scss">
 .swiperSlide {
   width: 100%;
-  height: 90vh;
+  height: 106vh;
+  h1{
+    font-size: 650px;
+    line-height: 700px;
+    opacity: 0.5;
+    font-weight: 900;
+  }
 }
 
 header {
