@@ -11,7 +11,7 @@
       class="dialog_fullscreen rounded-lg"
     >
       <v-row>
-        <v-col class="py-0 d-flex justify-center align-center" cols="12" md="6">
+        <v-col class="py-0" cols="12" md="6">
           <img :src="img" alt="" />
         </v-col>
         <v-col class="py-0" cols="12" md="6">
@@ -82,16 +82,26 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.dialog_fullscreen {
+.dialog{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+.dialog_fullscreen {
+  position: relative;
   z-index: 11;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   // border-radius: ;
   overflow-x: hidden;
   overflow-y: auto;
-  max-width: 1200px;
+  max-width: 1000px;
 }
 .overlay {
   position: fixed;
@@ -153,7 +163,7 @@ ul {
 .card_title {
   word-break: break-word !important;
 }
-@media (max-width: 767px) {
+@media (max-width: 1200px) {
   .dialog_fullscreen {
     max-width: 100%;
     width: 90%;

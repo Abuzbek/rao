@@ -12,7 +12,7 @@
       >
     </h1>
     <v-container>
-      <v-row>
+      <v-row >
         <v-col cols="4" v-for="n in insta" :key="n.img">
           <a
             target="_blank"
@@ -23,26 +23,6 @@
         </v-col>
       </v-row>
     </v-container>
-    <section class="location">
-      <v-container>
-        <v-row>
-          <v-col cols="6" md="3" v-for="n in icon_set" :key="n.icon">
-            <div class="icon_set d-flex">
-              <v-btn tag="a" :href="n.href" target="_blank" class="mx-2" fab dark :color="n.color">
-                <v-icon dark> mdi-{{ n.icon }} </v-icon>
-              </v-btn>
-              <div class="icon_text">
-                <a :href="n.href" target="_blank" class="black--text">
-                 <h3 >{{ n.heading }}</h3>
-                  <p >{{ n.title }}</p> 
-                </a>
-                
-              </div>
-            </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </section>
   </div>
 </template>
 <script>
@@ -124,7 +104,7 @@ img {
   max-width: 100%;
   height: auto;
 }
-.black--text {
+.black--text{
   text-decoration: none !important;
 }
 h1 {

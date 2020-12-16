@@ -5,12 +5,10 @@
         <swiper-slide
           v-for="n in banners"
           :key="n"
-          :style="
-            `background : url(${n.img}) no-repeat center center / cover;`
-          "
+          :style="`background : url(${n.img}) no-repeat center center / cover;`"
           class="swiperSlide d-flex justify-center align-center"
         >
-        <h1>{{n.text}}</h1>
+          <h1 style="cursor:default;">{{ n.text }}</h1>
         </swiper-slide>
       </swiper>
       <div class="swiper-pagination swiperPag" slot="pagination"></div>
@@ -51,7 +49,9 @@
       </v-row>
     </v-container>
     <SuperSale />
-    <Instagram/>
+    <Instagram />
+    <About/>
+    <Footer/>
   </div>
 </template>
 <script>
@@ -59,7 +59,9 @@ import axios from "axios";
 import Card from "../components/card";
 import Special from "../components/special.vue";
 import Instagram from "../components/instagram.vue";
+import About from "../components/aboutContact.vue";
 import Dialog from "../components/dialog";
+import Footer from "../components/footer.vue";
 import SuperSale from "../components/superSale.vue";
 import SwiperCore, { Pagination, EffectFade, Autoplay } from "swiper";
 import { Swiper, SwiperSlide, directive } from "vue-awesome-swiper";
@@ -70,24 +72,26 @@ export default {
     return {
       banners: [
         {
-          img:"https://cdn.shopify.com/s/files/1/0265/6534/5322/files/slide1.jpg?v=1586335554",
-          text:'ALL'
-        }, 
+          img:
+            "https://cdn.shopify.com/s/files/1/0265/6534/5322/files/slide1.jpg?v=1586335554",
+          text: "ALL",
+        },
         {
-          img:"https://www.ivl.com/Content/Html/MAKANA/images/bg-1.jpg",
-          text:'FOR'
-        }, 
+          img: "https://www.ivl.com/Content/Html/MAKANA/images/bg-1.jpg",
+          text: "FOR",
+        },
         {
-          img:"https://skincare.7uptheme.net/wp-content/uploads/2019/07/slider18b.jpg",
-          text:'YOU'
-        }
+          img:
+            "https://skincare.7uptheme.net/wp-content/uploads/2019/07/slider18b.jpg",
+          text: "YOU",
+        },
       ],
       swiperOptions: {
         loop: true,
         effect: "fade",
         autoplay: {
-          delay: 2000,
-          disableOnInteraction: false
+          delay: 1500,
+          disableOnInteraction: false,
         },
         pagination: {
           el: ".swiper-pagination",
@@ -108,7 +112,9 @@ export default {
     SuperSale,
     Dialog,
     Card,
-    Instagram
+    Footer,
+    About,
+    Instagram,
   },
   directives: {
     swiper: directive,
@@ -150,7 +156,7 @@ export default {
 .swiperSlide {
   width: 100%;
   height: 106vh;
-  h1{
+  h1 {
     font-size: 650px;
     line-height: 700px;
     opacity: 0.5;

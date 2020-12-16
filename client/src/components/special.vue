@@ -138,6 +138,7 @@ export default {};
   line-height: 488px;
   background: url("https://img2.goodfon.ru/wallpaper/nbig/4/45/devushka-model-volosy-2273.jpg");
   background-position: -185px -10px;
+  cursor: default;
   background-size: cover;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

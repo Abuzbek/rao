@@ -6,6 +6,8 @@
       fixed
       height="64px"
       style="z-index:10;"
+      elevation="1"
+      class="navbar_raon"
     >
     <router-link exact no-prefetch to="/">
       <v-img
@@ -113,6 +115,11 @@ export default {
         }
       ]
     }
+  },
+  mounted(){
+    document.querySelector('.navbar_raon').addEventListener('click', (e)=>{
+      console.log(e);
+    })
   }
 }
 </script>
@@ -130,4 +137,5 @@ export default {
   color: black;
   text-decoration: none;
 }
+.navbar_raon{opacity: 0.8;}
 </style>
