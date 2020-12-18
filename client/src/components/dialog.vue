@@ -36,8 +36,8 @@
             <p class="description">
               {{ description }}
             </p>
-            <v-btn color="warning" @click="selectCart()">
-              В корзину
+            <v-btn color="warning" @click.once="addCart">
+              В корзину +1
             </v-btn>
           </v-card-text>
         </v-col>
@@ -65,11 +65,11 @@ export default {
       default: "https://aseshop.uz/uploads/default/no-image.jpg",
     },
     price: {
-      type: String,
+      type: Number,
       // required:true
     },
     sale: {
-      type: String,
+      type: Number,
     },
     description: {
       type: String,
@@ -79,6 +79,20 @@ export default {
       type: String,
     },
   },
+  methods:{
+    addCart(){
+      this.$store.dispatch('setProduct', {
+        _id:this._id,
+        name:this.name,
+        img:this.img,
+        price:this.price,
+        sale:this.sale,
+        category:this.category,
+        count:1
+      })
+      this.$emit('dialogFalse', false)
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -96,7 +110,10 @@ export default {
   z-index: 1000;
 }
 .dialog_fullscreen {
-  position: relative;
+  position: fixed;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
   z-index: 11;
   // border-radius: ;
   overflow-x: hidden;

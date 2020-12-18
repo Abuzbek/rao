@@ -10,6 +10,7 @@
       class="white--text align-end"
       max-height="300px"
       :src="img"
+      :lazy-src="require('../assets/no-image.jpg')"
     >
     </v-img>
     <v-card-subtitle class="pb-0">
@@ -30,7 +31,7 @@
         </v-col>
         <v-col class="pt-1 pb-1 px-0" cols="12" md="6">
           <v-btn color="#ffd66b" class="cardBtn" @click="selectCart()">
-            В корзину
+            Выбрать
           </v-btn>
         </v-col>
       </v-row>
@@ -56,15 +57,18 @@ export default {
       default: "https://aseshop.uz/uploads/default/no-image.jpg",
     },
     price: {
-      type: String,
+      type: Number,
       required: true,
     },
     sale: {
-      type: String,
+      type: Number,
     },
     description: {
       type: String,
       required: true,
+    },
+    gender:{
+      type:String
     },
     category: {
       type: String,
@@ -81,7 +85,6 @@ export default {
         description: this.description,
         category: this.category,
       });
-      // console.log(id);
     },
   },
 };
@@ -95,6 +98,23 @@ export default {
   position: absolute;
   top: 22px;
   right: 0;
+  z-index: 5;
+  height: 40px;
+  width: 85px;
+  background: #ffd66b;
+  color: #f4f4f4;
+  font-weight: 500;
+  transform: rotate(-90deg);
+  border-radius: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 10% 50%);
+}
+.product_gender{
+  position: absolute;
+  top: 22px;
+  left: 0px;
   z-index: 5;
   height: 40px;
   width: 85px;

@@ -4,7 +4,7 @@
       <swiper ref="mySwiper" :options="swiperOptions">
         <swiper-slide
           v-for="n in banners"
-          :key="n"
+          :key="n.img"
           :style="`background : url(${n.img}) no-repeat center center / cover;`"
           class="swiperSlide d-flex justify-center align-center"
         >
@@ -19,7 +19,7 @@
       <v-row class="justify-center">
         <v-col
           v-for="n in products"
-          :key="n"
+          :key="n._id"
           cols="12"
           sm="6"
           xl="2"
@@ -36,8 +36,8 @@
       <h1 class="text-center">NEW ARRIVAL</h1>
       <v-row class="justify-center">
         <v-col
-          v-for="n in products"
-          :key="n"
+          v-for="n in productsNew"
+          :key="n._id"
           cols="12"
           sm="6"
           xl="2"
@@ -101,6 +101,7 @@ export default {
       },
       dialog: false,
       products: "",
+      productsNew:'',
       productPush: null,
       clickedId: false,
     };
@@ -125,7 +126,20 @@ export default {
       .then((res) => res.data)
       .then((card) => {
         console.log(card);
-        this.products = card;
+        this.products = card.filter((n,i)=> {
+          console.log(i)
+          return n.new !== 'on';
+        });
+      });
+    await axios
+      .get("http://localhost:3000/api")
+      .then((res) => res.data)
+      .then((card) => {
+        console.log(card);
+        this.productsNew = card.filter((n,i)=>{
+          console.log(i)
+          return n.new === 'on';
+        });
       });
   },
   methods: {

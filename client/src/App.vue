@@ -27,12 +27,6 @@
         :key="i"
       >
       <template v-slot:activator="{ attrs, on }">
-        <v-badge
-          :content="22"
-          :value="22"
-          :color="n.icon ? '#ff9d72' : 'transparent'"
-          overlap
-        >
           <v-btn
             v-bind="attrs"
             v-on="on"
@@ -44,12 +38,7 @@
             <v-icon right v-if="n.item">
               mdi-chevron-down
             </v-icon>
-            
-            <v-icon right v-if="n.icon">
-              {{n.icon}}
-            </v-icon>
           </v-btn>
-        </v-badge>
       </template>
       <v-list v-if="n.item">
         <router-link class="itemHref" to="#!"
@@ -66,6 +55,22 @@
         </router-link>
       </v-list>
     </v-menu>
+    <v-badge
+      :content="products.length"
+      :value="products.length"
+      :color="'#ff9d72'"
+      overlap
+    >
+    <v-btn
+    tag="router-link"
+    to="/checkout"
+    text>
+      Aккаунт
+      <v-icon right>
+        mdi-cart
+      </v-icon>
+    </v-btn>
+    </v-badge>
     </v-app-bar>
     <v-main>
       <router-view />
@@ -74,6 +79,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
   data () {
     return {
@@ -108,18 +114,16 @@ export default {
             'Полноценный уход за кожей',
 
           ]
-        },
-        {
-          title:'Aккаунт',
-          icon:'mdi-cart'
         }
-      ]
+      ],
+      products:null
     }
   },
+  computed: mapGetters(['getProducts']),
   mounted(){
-    document.querySelector('.navbar_raon').addEventListener('click', (e)=>{
-      console.log(e);
-    })
+    this.$store.dispatch('setProduct')
+    this.products = this.getProducts.filter(i => i !== undefined)
+    console.log(this.getProducts);
   }
 }
 </script>
