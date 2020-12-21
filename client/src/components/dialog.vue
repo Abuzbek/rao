@@ -1,5 +1,6 @@
 <template>
   <div class="dialog py-15">
+    <Count @dialogCounter="counter" v-if="counterDialog" v-bind="productPush" />
     <div class="overlay" @click="$emit('dialogFalse', false)">
       <v-btn icon dark @click="$emit('dialogFalse', false)">
         <v-icon>mdi-close</v-icon>
@@ -46,7 +47,15 @@
   </div>
 </template>
 <script>
+import Count from "./count";
 export default {
+  data: () => ({
+    counterDialog: false,
+    productPush: null,
+  }),
+  components: {
+    Count,
+  },
   props: {
     dialog: {
       type: Boolean,
@@ -79,24 +88,27 @@ export default {
       type: String,
     },
   },
-  methods:{
-    addCart(){
-      this.$store.dispatch('setProduct', {
-        _id:this._id,
-        name:this.name,
-        img:this.img,
-        price:this.price,
-        sale:this.sale,
-        category:this.category,
-        count:1
-      })
-      this.$emit('dialogFalse', false)
-    }
-  }
+  methods: {
+    addCart() {
+      this.counterDialog = true;
+      this.productPush = {
+        _id: this._id,
+        name: this.name,
+        img: this.img,
+        price: this.price,
+        sale: this.sale,
+        category: this.category,
+      };
+    },
+    counter(counter) {
+      this.counterDialog = counter;
+      this.$emit("dialogFalse", false);
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
-.dialog{
+.dialog {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,9 +123,9 @@ export default {
 }
 .dialog_fullscreen {
   position: fixed;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 11;
   // border-radius: ;
   overflow-x: hidden;

@@ -67,8 +67,8 @@ export default {
       type: String,
       required: true,
     },
-    gender:{
-      type:String
+    gender: {
+      type: String,
     },
     category: {
       type: String,
@@ -111,7 +111,7 @@ export default {
   align-items: center;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 10% 50%);
 }
-.product_gender{
+.product_gender {
   position: absolute;
   top: 22px;
   left: 0px;

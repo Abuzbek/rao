@@ -41,16 +41,15 @@
           </v-btn>
       </template>
       <v-list v-if="n.item">
-        <router-link class="itemHref" to="#!"
+        <router-link class="itemHref" :to="n.href"
         v-for="(n, i) in n.item"
           :key="i">
         <v-list-item
           link
         >
           <v-list-item-title>
-            {{n}}
+            {{n.name}}
           </v-list-item-title>
-          
         </v-list-item>
         </router-link>
       </v-list>
@@ -87,8 +86,14 @@ export default {
         {
           title:'Главная',
           item:[
-            'Слоган бренда',
-            'Слоган бренда'
+            {
+              name:'Слоган бренда',
+              href:'/brend'
+            },
+            {
+              name:'Слоган бренда',
+              href:'/history'
+            },
           ]
         },
         {
@@ -97,22 +102,51 @@ export default {
         {
           title:'Женщины',
           item:[
-            'Декоративная Косметика',
-            'Средства для депиляции',
-            'Уход за волосами',
-            'Пакет масок',
-            'Полноценный уход за кожей'
+            {
+              name:'Декоративная Косметика',
+              href:'/women/cosmetic'
+            },
+            {
+              name:'Средства для депиляции',
+              href:'/women/depilatory'
+            },
+            {
+              name:'Уход за волосами',
+              href:'/women/hair_care'
+            },
+            {
+              name:'Пакет масок',
+              href:'/women/pack_of_masks'
+            },
+            {
+              name:'Полноценный уход за кожей',
+              href:'/women/Complete_skin_care'
+            },
           ]
         },
         {
           title:'Мужчины',
           item:[
-            'Декоративная Косметика',
-            'Средства для депиляции',
-            'Уход за волосами',
-            'Пакет масок',
-            'Полноценный уход за кожей',
-
+            {
+              name:'Декоративная Косметика',
+              href:'/man/cosmetic'
+            },
+            {
+              name:'Средства для депиляции',
+              href:'/man/depilatory'
+            },
+            {
+              name:'Уход за волосами',
+              href:'/man/hair_care'
+            },
+            {
+              name:'Пакет масок',
+              href:'/man/pack_of_masks'
+            },
+            {
+              name:'Полноценный уход за кожей',
+              href:'/man/Complete_skin_care'
+            },
           ]
         }
       ],

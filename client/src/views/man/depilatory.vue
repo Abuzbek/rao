@@ -64,7 +64,7 @@ export default {
         console.log(card);
           this.products = card.filter((n,i)=> {
           console.log(i)
-          return n.category === 'Средства для депиляции' && n.gender === 'woman' ;
+          return n.category === 'Средства для депиляции' && n.gender === 'man' ;
         });
       });
   }
@@ -75,7 +75,7 @@ export default {
   .top{
     height: 400px;
     width: 100%;
-    background: url('https://www.sacredmomentsmassage.com/wp-content/uploads/2016/01/slide2.jpg') no-repeat center center / cover;
+    background: url('https://omahalacecleaners.com/wp-content/uploads/2016/01/drycleaning-page.jpg') no-repeat center center / cover;
   }
 }
 </style>

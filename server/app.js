@@ -37,14 +37,23 @@ db.once('open', function () {
 app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+if( process.env.NODE_ENV === "production" ){
 
+  app.use(express.static(__dirname + '/public'))
+
+  app.get('*', (req,res)=>{
+
+    res.sendFile(__dirname+'/public/index.html')
+
+  })
+}
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

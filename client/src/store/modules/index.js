@@ -6,10 +6,9 @@ export default {
     setProduct(state, payload) {
       state.product.push(payload)
     },
-    deleteProduct(state, payload){
-      state.product = state.product.filter(i => i !== undefined)
+    deleteProduct(state){
       state.product = state.product.filter(i=>{
-        if(i._id !== payload){
+        if(i == undefined){
           return true;
         }
       })

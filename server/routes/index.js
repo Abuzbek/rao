@@ -17,6 +17,9 @@ router.get('/api', function(req, res, next) {
     }
   })
 });
+router.post('/api/post', function(req, res, next) {
+  console.log(req.body);
+});
 // router.get('/api/:id', function(req, res, next) {
 //   Product.findByIdAndRemove(req.params.id, (err, data)=>{
 //     if(err){
