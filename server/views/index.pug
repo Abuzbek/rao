@@ -4,15 +4,15 @@ block content
   h1= title
   p Welcome to #{title}
     form(action="/" method="POST")
-      input(type="text", style="margin-bottom:20px;" name="name" placeholder="Product name ...") 
+      input( class="form-control" type="text", style="margin-bottom:20px;" name="name" placeholder="Product name ...") 
       br
-      input(type="text", style="margin-bottom:20px;" name="sale" placeholder="Product sale ...") 
+      input( class="form-control" type="text", style="margin-bottom:20px;" name="sale" placeholder="Product sale ...") 
       br
-      input(type="text", style="margin-bottom:20px;" name="price" placeholder="Product price ...") 
+      input( class="form-control" type="text", style="margin-bottom:20px;" name="price" placeholder="Product price ...") 
       br
-      input(type="text", style="margin-bottom:20px;" name="img" placeholder="Product img ...") 
+      input( class="form-control" type="text", style="margin-bottom:20px;" name="img" placeholder="Product img ...") 
       br
-      input(type="text", style="margin-bottom:20px;" name="category" placeholder="Product category ...") 
+      input( class="form-control" type="text", style="margin-bottom:20px;" name="category" placeholder="Product category ...") 
       br
       textarea(
       name="description",
@@ -20,6 +20,7 @@ block content
       rows="10"
       placeholder="Product description ..."
       style="resize:none;"
+      class="form-control"
       )
       br
-      button(type="submit") send
+      button(type="submit" class="btn btn-success") send

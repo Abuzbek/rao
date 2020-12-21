@@ -1,7 +1,7 @@
 <template>
   <div class="dialog py-15">
     <Count @dialogCounter="counter" v-if="counterDialog" v-bind="productPush" />
-    <div class="overlay" @click="$emit('dialogFalse', false)">
+    <div class="overlay" >
       <v-btn icon dark @click="$emit('dialogFalse', false)">
         <v-icon>mdi-close</v-icon>
       </v-btn>
@@ -130,7 +130,8 @@ export default {
   // border-radius: ;
   overflow-x: hidden;
   overflow-y: auto;
-  max-width: 1000px;
+  max-width: 100%;
+  width: 90%;
 }
 .overlay {
   position: fixed;

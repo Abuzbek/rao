@@ -5,10 +5,10 @@
         <swiper-slide
           v-for="n in banners"
           :key="n.img"
-          :style="`background : url(${n.img}) no-repeat center center / cover;`"
+          :style="``"
           class="swiperSlide d-flex justify-center align-center"
         >
-          <h1 style="cursor:default;">{{ n.text }}</h1>
+          <img :src="n.img" alt="">
         </swiper-slide>
       </swiper>
       <div class="swiper-pagination swiperPag" slot="pagination"></div>
@@ -143,15 +143,6 @@ export default {
       });
   },
   methods: {
-    // pushId(id){
-    //   if(this.clickedId){
-    //     this.$axios.$post('http://localhost:8080/api/product/delete', {id: id})
-    //   }
-    //   else{
-    //     this.$axios.$post('http://localhost:8080/api/product', {id: id})
-    //   }
-    //   this.clickedId = !this.clickedId
-    // }
     selectId(select) {
       console.log(select);
       this.productPush = select;
@@ -169,7 +160,8 @@ export default {
 <style lang="scss">
 .swiperSlide {
   width: 100%;
-  height: 106vh;
+  height: auto;
+  padding-top: 64px;
   h1 {
     font-size: 650px;
     line-height: 700px;
@@ -206,5 +198,9 @@ header {
       }
     }
   }
+}
+img{
+  max-width: 100%;
+  height: auto;
 }
 </style>

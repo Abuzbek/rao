@@ -7,8 +7,7 @@
       style="cursor:pointer;"
       @click="selectCart()"
       v-ripple="{ class: '#00bf54' }"
-      class="white--text align-end"
-      max-height="300px"
+      class="white--text align-end cardItem"
       :src="img"
       :lazy-src="require('../assets/no-image.jpg')"
     >
@@ -94,6 +93,7 @@ export default {
   font-size: 19px;
   font-weight: 500;
 }
+.cardItem{max-height: 300px;}
 .product_sale {
   position: absolute;
   top: 22px;
@@ -134,5 +134,8 @@ export default {
 }
 .cardBtn {
   color: #f4f4f4;
+}
+@media (max-width:599px) {
+  .cardItem{max-height: 100% !important;}
 }
 </style>

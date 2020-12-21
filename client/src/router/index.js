@@ -68,6 +68,16 @@ const routes = [
     name:'man_depilatory',
     component: () => import(/* webpackChunkName: "about" */ '../views/man/depilatory.vue')
   },
+  {
+    path:'/history',
+    name:'history',
+    component: () => import(/* webpackChunkName: "about" */ '../views/brend/history.vue')
+  },
+  {
+    path:'/brend',
+    name:'brend',
+    component: () => import(/* webpackChunkName: "about" */ '../views/brend/brend.vue')
+  },
 ]
 
 const router = new VueRouter({

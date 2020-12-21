@@ -20,6 +20,8 @@
       </div>
     </v-container>
     <FormDialog v-if="formDialog" @form-send="sendForm" @form-false="selectForm"/>
+  
+  <Footer/>
   </div>
 </template>
 
@@ -27,15 +29,16 @@
 import checkoutCart from '../components/checkoutCart'
 import FormDialog from '../components/form'
 import axios from 'axios'
+import Footer from '../components/footer'
 export default {
   data:()=>({
-    products:null,
+    products:[],
     formDialog:false,
     allPrice:'',
   }),
   components:{
     checkoutCart:checkoutCart,
-    FormDialog
+    FormDialog,Footer
   },
   mounted (){
     this.$store.dispatch('setProduct')
@@ -67,6 +70,7 @@ export default {
         }
       })
       if(!this.products.length){
+        this.$router.push('/')
         window.location.reload()
       }
     },

@@ -9,29 +9,25 @@
       elevation="1"
       class="navbar_raon"
     >
-    <router-link exact no-prefetch to="/">
-      <v-img
-        alt="star Logo"
-        class="shrink ml-12"
-        contain
-        :src="require('./assets/images/logo.png')"
-        transition="scale-transition"
-        height="64px"
-      />
-    </router-link>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="d-block_lg"></v-app-bar-nav-icon>
+      <router-link exact no-prefetch to="/">
+        <v-img
+          alt="star Logo"
+          class="shrink ml-12 imageApp"
+          contain
+          :src="require('./assets/images/logo.png')"
+          transition="scale-transition"
+          height="64px"
+        />
+      </router-link>
       <v-spacer></v-spacer>
-      <v-menu
-        rounded="b-xl"
-        offset-y
-        v-for="(n, i) in menus"
-        :key="i"
-      >
-      <template v-slot:activator="{ attrs, on }">
+      <v-menu rounded="b-xl" offset-y v-for="(n, i) in menus" :key="i">
+        <template v-slot:activator="{ attrs, on }">
           <v-btn
             v-bind="attrs"
             v-on="on"
             text
-            class="btn_text"
+            class="btn_text d-none_lg"
             active-class="btn_text_active"
           >
             {{ n.title }}
@@ -39,38 +35,64 @@
               mdi-chevron-down
             </v-icon>
           </v-btn>
-      </template>
-      <v-list v-if="n.item">
-        <router-link class="itemHref" :to="n.href"
-        v-for="(n, i) in n.item"
-          :key="i">
-        <v-list-item
-          link
-        >
-          <v-list-item-title>
-            {{n.name}}
-          </v-list-item-title>
-        </v-list-item>
-        </router-link>
-      </v-list>
-    </v-menu>
-    <v-badge
-      :content="products.length"
-      :value="products.length"
-      :color="'#ff9d72'"
-      overlap
-    >
-    <v-btn
-    tag="router-link"
-    to="/checkout"
-    text>
-      Aккаунт
-      <v-icon right>
-        mdi-cart
-      </v-icon>
-    </v-btn>
-    </v-badge>
+        </template>
+        <v-list v-if="n.item">
+          <router-link
+            class="itemHref"
+            :to="n.href"
+            v-for="(n, i) in n.item"
+            :key="i"
+          >
+            <v-list-item link>
+              <v-list-item-title>
+                {{ n.name }}
+              </v-list-item-title>
+            </v-list-item>
+          </router-link>
+        </v-list>
+      </v-menu>
+      <v-badge :content="`${productLenght}`" :color="'#ff9d72'" overlap>
+        <v-btn tag="router-link" to="/checkout" text>
+          Aккаунт
+          <v-icon right>
+            mdi-cart
+          </v-icon>
+        </v-btn>
+      </v-badge>
     </v-app-bar>
+    <v-navigation-drawer
+      v-model="drawer"
+      style="z-index:10;"
+      absolute
+      temporary
+      color="grey lighten-2"
+    >
+      <v-list-item>
+        <router-link exact no-prefetch to="/">
+          <v-img
+            alt="star Logo"
+            class="shrink ml-12"
+            contain
+            :src="require('./assets/images/logo.png')"
+            transition="scale-transition"
+            height="100px"
+          />
+        </router-link>
+      </v-list-item>
+      <v-divider></v-divider>
+      <v-list dense>
+        <v-list-group v-for="n in menus" :key="n.title" :value="false">
+          <template v-slot:activator>
+            <v-list-item-title>{{n.title}}</v-list-item-title>
+          </template>
+          <v-list-item v-for="(l, i) in n.item" :key="i" link>
+            <router-link style="color:rgba(0, 0, 0, 0.87) !important;text-decoration:none;" :to="l.href">
+             <v-list-item-title v-text="l.name"></v-list-item-title> 
+            </router-link>
+          </v-list-item>
+        </v-list-group>
+      </v-list>
+    </v-navigation-drawer>
     <v-main>
       <router-view />
     </v-main>
@@ -78,102 +100,125 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+// import { mapGetters } from "vuex";
 export default {
-  data () {
+  data() {
     return {
-      menus:[
+      drawer: null,
+      menus: [
         {
-          title:'Главная',
-          item:[
+          title: "O нас",
+          item: [
             {
-              name:'Слоган бренда',
-              href:'/brend'
+              name: "RAON бренди",
+              href: "/brend",
             },
             {
-              name:'Слоган бренда',
-              href:'/history'
+              name: "RAON история",
+              href: "/history",
             },
-          ]
+          ],
         },
         {
-          title: 'O нас'
+          title: "Женщины",
+          item: [
+            {
+              name: "Декоративная Косметика",
+              href: "/women/cosmetic",
+            },
+            {
+              name: "Средства для депиляции",
+              href: "/women/depilatory",
+            },
+            {
+              name: "Уход за волосами",
+              href: "/women/hair_care",
+            },
+            {
+              name: "Пакет масок",
+              href: "/women/pack_of_masks",
+            },
+            {
+              name: "Полноценный уход за кожей",
+              href: "/women/Complete_skin_care",
+            },
+          ],
         },
         {
-          title:'Женщины',
-          item:[
+          title: "Мужчины",
+          item: [
             {
-              name:'Декоративная Косметика',
-              href:'/women/cosmetic'
+              name: "Декоративная Косметика",
+              href: "/man/cosmetic",
             },
             {
-              name:'Средства для депиляции',
-              href:'/women/depilatory'
+              name: "Средства для депиляции",
+              href: "/man/depilatory",
             },
             {
-              name:'Уход за волосами',
-              href:'/women/hair_care'
+              name: "Уход за волосами",
+              href: "/man/hair_care",
             },
             {
-              name:'Пакет масок',
-              href:'/women/pack_of_masks'
+              name: "Пакет масок",
+              href: "/man/pack_of_masks",
             },
             {
-              name:'Полноценный уход за кожей',
-              href:'/women/Complete_skin_care'
+              name: "Полноценный уход за кожей",
+              href: "/man/Complete_skin_care",
             },
-          ]
+          ],
         },
-        {
-          title:'Мужчины',
-          item:[
-            {
-              name:'Декоративная Косметика',
-              href:'/man/cosmetic'
-            },
-            {
-              name:'Средства для депиляции',
-              href:'/man/depilatory'
-            },
-            {
-              name:'Уход за волосами',
-              href:'/man/hair_care'
-            },
-            {
-              name:'Пакет масок',
-              href:'/man/pack_of_masks'
-            },
-            {
-              name:'Полноценный уход за кожей',
-              href:'/man/Complete_skin_care'
-            },
-          ]
-        }
       ],
-      products:null
-    }
+      products: [],
+    };
   },
-  computed: mapGetters(['getProducts']),
-  mounted(){
-    this.$store.dispatch('setProduct')
-    this.products = this.getProducts.filter(i => i !== undefined)
-    console.log(this.getProducts);
-  }
-}
+  computed: {
+    getPro() {
+      return this.$store.getters.getProducts;
+    },
+    productLenght() {
+      return this.getPro.filter((i) => i !== undefined).length;
+    },
+  },
+  mounted() {
+    this.$store.dispatch("setProduct");
+    // this.products = this.getProducts.filter((i) => i !== undefined);
+    // console.log(this.products);
+  },
+};
 </script>
 <style lang="scss" scoped>
-.btn_text{
-  transition:.3s;
-  &:hover{
-    color:#ff9d72;
+.btn_text {
+  transition: 0.3s;
+  &:hover {
+    color: #ff9d72;
   }
-  &_active{
-    color:#ff9d72;
+  &_active {
+    color: #ff9d72;
   }
 }
-.itemHref{
+.itemHref {
   color: black;
   text-decoration: none;
 }
-.navbar_raon{opacity: 0.8;}
+.navbar_raon {
+  opacity: 0.8;
+}
+.d-block_lg{
+    display: none;
+  }
+@media (max-width: 992px) {
+  .d-none_lg {
+    display: none !important;
+  }
+  .d-block_lg{
+    display: block;
+  }
+}
+@media (max-width:400px) {
+  .imageApp{
+    margin-left: 10px;
+  }
+}
 </style>

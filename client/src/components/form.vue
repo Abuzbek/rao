@@ -53,6 +53,8 @@ export default {
         trueFalse:false,
         product:[]
       })
+      this.$router.push('/')
+      window.location.reload()
     }
   }
 }

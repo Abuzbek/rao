@@ -19,13 +19,15 @@
         </v-col>
       </v-row>
     </v-container>
+    <Footer/>
   </section>
+  
 </template>
 <script>
 import axios from 'axios'
 import Card from '../../components/card'
 import Dialog from '../../components/dialog'
-
+import Footer from '../../components/footer'
 export default {
   data:()=>({
     dialog: false,
@@ -33,7 +35,7 @@ export default {
     products:[]
   }),
   components:{
-    Card,Dialog
+    Card,Dialog,Footer
   },
   methods: {
     // pushId(id){

@@ -2,7 +2,7 @@
   <div class="footer">
     <v-container>
       <v-row>
-        <v-col cols="12" md="6" lg="4">
+        <v-col cols="12" md="6" >
           <h2>CS Markazi</h2>
           <a class="phones" href="tel:+998909935787">+998 90 993 57 87</a>
           <a class="phones two" href="tel:+998909945787">+998 90 994 57 87</a>
@@ -13,7 +13,7 @@
             Yopiq: shanba, yakshanba va dam olish kunlari
           </p>
         </v-col>
-        <v-col style="border-left:1px solid #b6b4b49a;border-right:1px solid #b6b4b49a;" cols="12" md="6" lg="4">
+        <!-- <v-col style="border-left:1px solid #b6b4b49a;border-right:1px solid #b6b4b49a;" cols="12" md="6" lg="4">
           <div class="px-6">
             <h2>BANK INFO</h2>
             <ul>
@@ -40,8 +40,8 @@
             </ul>
           </div>
           
-        </v-col>
-        <v-col cols="12" md="6" lg="4">
+        </v-col> -->
+        <v-col cols="12" md="6"  style="border-left:1px solid #b6b4b49a;">
           <div class="px-6">
             <h2>Bizning manzil</h2>
             <p>
