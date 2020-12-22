@@ -14,7 +14,6 @@
       <div class="swiper-pagination swiperPag" slot="pagination"></div>
     </header>
     <v-container class="pt-15">
-      <Dialog v-bind="productPush" v-if="dialog" @dialogFalse="dialogFalse()" />
       <h1 class="text-center">BEST SELLER</h1>
       <v-row class="justify-center">
         <v-col
@@ -32,7 +31,6 @@
     </v-container>
     <Special />
     <v-container class="pt-15">
-      <Dialog v-bind="productPush" v-if="dialog" @dialogFalse="dialogFalse()" />
       <h1 class="text-center">NEW ARRIVAL</h1>
       <v-row class="justify-center">
         <v-col
@@ -60,7 +58,6 @@ import Card from "../components/card";
 import Special from "../components/special.vue";
 import Instagram from "../components/instagram.vue";
 import About from "../components/aboutContact.vue";
-import Dialog from "../components/dialog";
 import Footer from "../components/footer.vue";
 import SuperSale from "../components/superSale.vue";
 import SwiperCore, { Pagination, EffectFade, Autoplay } from "swiper";
@@ -102,7 +99,7 @@ export default {
       dialog: false,
       products: "",
       productsNew:'',
-      productPush: null,
+      productId: '',
       clickedId: false,
     };
   },
@@ -111,7 +108,6 @@ export default {
     SwiperSlide,
     Special,
     SuperSale,
-    Dialog,
     Card,
     Footer,
     About,
@@ -145,13 +141,7 @@ export default {
   methods: {
     selectId(select) {
       console.log(select);
-      this.productPush = select;
-      this.dialog = !this.dialog;
-      document.querySelector("html").style.overflow = "hidden";
-    },
-    dialogFalse(select) {
-      this.dialog = select;
-      document.querySelector("html").style.overflow = "auto";
+      this.$router.push(`/product/${select._id}`)
     },
   },
 };

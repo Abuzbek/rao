@@ -78,6 +78,11 @@ const routes = [
     name:'brend',
     component: () => import(/* webpackChunkName: "about" */ '../views/brend/brend.vue')
   },
+  {
+    path:'/product/:id',
+    name:'productId',
+    component: () => import(/* webpackChunkName: "about" */ '../views/productId/_id.vue')
+  },
 ]
 
 const router = new VueRouter({
