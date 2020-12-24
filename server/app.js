@@ -8,7 +8,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const post = require('./routes/post');
 
 const app = express();
 
@@ -44,7 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, '../node_modules')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/post', post);
 if( process.env.NODE_ENV === "production" ){
 
   app.use(express.static(__dirname + '/public'))

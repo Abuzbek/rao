@@ -55,9 +55,109 @@
           </v-row>
         </v-col>
       </v-row>
-      <h1 class="display-2 font-weight-bold text-center">
-        Информация о продукте
+      <v-row v-if="id.photos">
+        <h1 class="display-2 font-weight-bold text-center">
+          Информация о продукте
+        </h1>
+        <v-col cols="12" md="8" class="ma-auto">
+          <img :src="n.img" v-for="(n, i) in id.photos" :key="i" alt="" />
+        </v-col>
+      </v-row>
+      <h1 class="mt-8 display-2 font-weight-bold text-center">
+        ОБЗОР
+        <!-- <span>
+          ⭐️
+        </span> -->
       </h1>
+      <v-row>
+        <v-col cols="12" lg="10" class="mx-auto">
+          <v-card class="px-10 py-5">
+            <v-row>
+              <v-col cols="12" md="12" sm="6">
+                <v-textarea
+                  filled
+                  counter=""
+                  :rules="commentaryRules"
+                  label="Комментарий"
+                  auto-grow
+                  v-model="commentary"
+                ></v-textarea>
+              </v-col>
+              <v-col cols="12" md="4" sm="6">
+                <v-file-input
+                  label="Фото продукта"
+                  filled
+                  prepend-icon="mdi-camera"
+                  v-model="img"
+                ></v-file-input>
+              </v-col>
+              <v-col cols="12" md="4" sm="6">
+                <v-text-field
+                  v-model="firstname"
+                  :rules="nameRules"
+                  :counter="20"
+                  filled
+                  label="Имя"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                md="4"
+                sm="6"
+                class="d-flex justify-center align-end"
+              >
+                <v-text-field
+                  v-model="email"
+                  :rules="emailRules"
+                  label="Эл. адрес"
+                  filled
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                md="8"
+                class="d-flex justify-center align-end mx-auto"
+                style="padding-bottom:40px;"
+              >
+                <v-btn color="warning" large dark block>
+                  Добавить
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12">
+          <v-card
+            v-for="l in comments"
+            :key="l._id"
+            class="mx-auto my-5"
+            max-width="100%"
+            outlined
+          >
+            <v-list-item three-line>
+              <v-list-item-avatar tile size="80" color="grey">
+                <img :src="l.img" alt="" />
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title class="headline mb-1">
+                  {{ l.name }}
+                </v-list-item-title>
+                <v-list-item-subtitle>
+                  {{ l.commentary }}
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" md="4">
+        </v-col>
+      </v-row>
     </v-container>
     <Footer />
   </div>
@@ -73,6 +173,20 @@ export default {
     id: {},
     productPush: null,
     counterDialog: false,
+    valid: false,
+    img: null,
+    firstname: "",
+    commentary: "",
+    nameRules: [
+      (v) => !!v || "Name is required",
+      (v) => v.length <= 20 || "Name must be less than 20 characters",
+    ],
+    commentaryRules: [(v) => !!v || "Comment is required"],
+    email: "",
+    emailRules: [
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+/.test(v) || "E-mail must be valid",
+    ],
   }),
   components: {
     Count,
@@ -140,11 +254,11 @@ export default {
     height: auto;
   }
 }
-hr{
+hr {
   margin: 25px 0;
 }
 .table {
-  padding-left: 0px ;
+  padding-left: 0px;
   margin-bottom: 50px;
   li {
     padding: 8px 0 8px 7px;

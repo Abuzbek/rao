@@ -5,11 +5,14 @@
       dense
       fixed
       height="64px"
-      style="z-index:10;"
+      style="z-index: 10"
       elevation="1"
       class="navbar_raon"
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="d-block_lg"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        @click.stop="drawer = !drawer"
+        class="d-block_lg"
+      ></v-app-bar-nav-icon>
       <router-link exact no-prefetch to="/">
         <v-img
           alt="star Logo"
@@ -31,9 +34,7 @@
             active-class="btn_text_active"
           >
             {{ n.title }}
-            <v-icon right v-if="n.item">
-              mdi-chevron-down
-            </v-icon>
+            <v-icon right v-if="n.item"> mdi-chevron-down </v-icon>
           </v-btn>
         </template>
         <v-list v-if="n.item">
@@ -54,15 +55,13 @@
       <v-badge :content="`${productLenght}`" :color="'#ff9d72'" overlap>
         <v-btn tag="router-link" to="/checkout" text>
           Aккаунт
-          <v-icon right>
-            mdi-cart
-          </v-icon>
+          <v-icon right> mdi-cart </v-icon>
         </v-btn>
       </v-badge>
     </v-app-bar>
     <v-navigation-drawer
       v-model="drawer"
-      style="z-index:10;"
+      style="z-index: 10"
       absolute
       temporary
       color="grey lighten-2"
@@ -83,11 +82,17 @@
       <v-list dense>
         <v-list-group v-for="n in menus" :key="n.title" :value="false">
           <template v-slot:activator>
-            <v-list-item-title>{{n.title}}</v-list-item-title>
+            <v-list-item-title>{{ n.title }}</v-list-item-title>
           </template>
           <v-list-item v-for="(l, i) in n.item" :key="i" link>
-            <router-link style="color:rgba(0, 0, 0, 0.87) !important;text-decoration:none;" :to="l.href">
-             <v-list-item-title v-text="l.name"></v-list-item-title> 
+            <router-link
+              style="
+                color: rgba(0, 0, 0, 0.87) !important;
+                text-decoration: none;
+              "
+              :to="l.href"
+            >
+              <v-list-item-title v-text="l.name"></v-list-item-title>
             </router-link>
           </v-list-item>
         </v-list-group>
@@ -116,6 +121,10 @@ export default {
             {
               name: "RAON история",
               href: "/history",
+            },
+            {
+              name: "Сообщество",
+              href: "/community",
             },
           ],
         },
@@ -205,19 +214,19 @@ export default {
 .navbar_raon {
   opacity: 0.8;
 }
-.d-block_lg{
-    display: none;
-  }
+.d-block_lg {
+  display: none;
+}
 @media (max-width: 992px) {
   .d-none_lg {
     display: none !important;
   }
-  .d-block_lg{
+  .d-block_lg {
     display: block;
   }
 }
-@media (max-width:400px) {
-  .imageApp{
+@media (max-width: 400px) {
+  .imageApp {
     margin-left: 10px;
   }
 }
