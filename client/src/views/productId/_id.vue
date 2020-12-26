@@ -69,6 +69,12 @@
           ⭐️
         </span> -->
       </h1>
+      <paginate name="items" :list="items" :per="5" class="paginate-list">
+        <li v-for="item in paginated('items')" :key="item">
+          {{ item }}
+        </li>
+      </paginate>
+      <paginate-links for="items" :limit="2" :show-step-links="true"></paginate-links>
       <v-row>
         <v-col cols="12" lg="10" class="mx-auto">
           <v-card class="px-10 py-5">
@@ -130,33 +136,12 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12">
-          <v-card
-            v-for="l in comments"
-            :key="l._id"
-            class="mx-auto my-5"
-            max-width="100%"
-            outlined
-          >
-            <v-list-item three-line>
-              <v-list-item-avatar tile size="80" color="grey">
-                <img :src="l.img" alt="" />
-              </v-list-item-avatar>
-              <v-list-item-content>
-                <v-list-item-title class="headline mb-1">
-                  {{ l.name }}
-                </v-list-item-title>
-                <v-list-item-subtitle>
-                  {{ l.commentary }}
-                </v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-          </v-card>
+        <v-col cols="12" v-for="l in commentary" :key="l._id">
+          <CommentCard v-bind="l" />
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" md="4">
-        </v-col>
+        <v-col cols="12" md="4"> </v-col>
       </v-row>
     </v-container>
     <Footer />
@@ -166,7 +151,7 @@
 import axios from "axios";
 import Count from "../../components/count";
 import Footer from "../../components/footer";
-
+import CommentCard from "../../components/commentCard";
 export default {
   name: "productId",
   data: () => ({
@@ -187,10 +172,13 @@ export default {
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+/.test(v) || "E-mail must be valid",
     ],
+    items: ['Item One', 'Item Two', 'Item Three', 'Item Four', 'Item Five', 'Item Six', 'Item Seven', 'Item Eight', 'Item Nine', 'Item Ten', 'Item Eleven', 'Item Twelve', 'Item Thirteen'],
+    paginate: ['items']
   }),
   components: {
     Count,
     Footer,
+    CommentCard,
   },
   computed: {
     getParams() {
@@ -279,4 +267,8 @@ hr {
     }
   }
 }
+
+</style>
+<style lang="scss">
+
 </style>

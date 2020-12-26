@@ -3,7 +3,8 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify';
 import router from './router'
 import store from './store'
-
+import VuePaginate from 'vue-paginate'
+Vue.use(VuePaginate);
 Vue.config.productionTip = false
 
 new Vue({

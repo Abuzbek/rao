@@ -43,7 +43,6 @@ router.post('/', function(req, res, next) {
     }
   })
 });
-
 router.get('/api/product/:id', (req,res)=>{
   Product.findById(req.params.id, (err, data)=>{
     if (err) {

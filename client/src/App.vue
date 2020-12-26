@@ -144,13 +144,17 @@ export default {
               href: "/women/hair_care",
             },
             {
-              name: "Пакет масок",
+              name: "Маска / Пакет",
               href: "/women/pack_of_masks",
             },
             {
               name: "Полноценный уход за кожей",
               href: "/women/Complete_skin_care",
             },
+            {
+              name:'НАБОР',
+              href:'/women/set'
+            }
           ],
         },
         {
@@ -176,6 +180,10 @@ export default {
               name: "Полноценный уход за кожей",
               href: "/man/Complete_skin_care",
             },
+            {
+              name:'НАБОР',
+              href:'/women/set'
+            }
           ],
         },
       ],
