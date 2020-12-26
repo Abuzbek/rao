@@ -69,12 +69,6 @@
           ⭐️
         </span> -->
       </h1>
-      <paginate name="items" :list="items" :per="5" class="paginate-list">
-        <li v-for="item in paginated('items')" :key="item">
-          {{ item }}
-        </li>
-      </paginate>
-      <paginate-links for="items" :limit="2" :show-step-links="true"></paginate-links>
       <v-row>
         <v-col cols="12" lg="10" class="mx-auto">
           <v-card class="px-10 py-5">
@@ -127,7 +121,7 @@
                 class="d-flex justify-center align-end mx-auto"
                 style="padding-bottom:40px;"
               >
-                <v-btn color="warning" large dark block>
+                <v-btn color="warning" large dark block @click="addComment">
                   Добавить
                 </v-btn>
               </v-col>
@@ -136,8 +130,18 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" v-for="l in commentary" :key="l._id">
-          <CommentCard v-bind="l" />
+        <v-col cols="12">
+          <paginate name="items" :list="items" :per="8" class="paginate-list">
+            <v-col v-for="(item, n) in paginated('items')" cols="12" :key="n">
+              <CommentCard v-bind="item" />
+            </v-col>
+          </paginate>
+          <paginate-links
+            for="items"
+            :limit="2"
+            :show-step-links="true"
+            class="pagination_item"
+          ></paginate-links>
         </v-col>
       </v-row>
       <v-row>
@@ -172,8 +176,8 @@ export default {
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+/.test(v) || "E-mail must be valid",
     ],
-    items: ['Item One', 'Item Two', 'Item Three', 'Item Four', 'Item Five', 'Item Six', 'Item Seven', 'Item Eight', 'Item Nine', 'Item Ten', 'Item Eleven', 'Item Twelve', 'Item Thirteen'],
-    paginate: ['items']
+    items: [],
+    paginate: ["items"],
   }),
   components: {
     Count,
@@ -192,6 +196,7 @@ export default {
       .then((id) => {
         console.log(id);
         this.id = id;
+        this.items = id.comments;
       });
   },
   methods: {
@@ -205,6 +210,14 @@ export default {
         sale: this.id.sale,
         category: this.id.category,
       };
+    },
+    addComment(){
+      axios
+        .post(`http://localhost:3000/api/edit/${this.getParams}`, {
+          name:this.firstname,
+          comment:this.commentary,
+          email:this.email,
+        })
     },
     counter(counter) {
       this.counterDialog = counter;
@@ -267,8 +280,54 @@ hr {
     }
   }
 }
-
 </style>
 <style lang="scss">
-
+.pagination_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  li {
+    background: #fff;
+    border-radius: 4px;
+    font-size: 1rem;
+    height: 34px;
+    margin: 0.3rem;
+    min-width: 34px;
+    padding: 0 5px;
+    text-decoration: none;
+    transition: 0.3s cubic-bezier(0, 0, 0.2, 1);
+    width: auto;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+  li.active {
+    color: #fff;
+    background-color: #1867c0 !important;
+    border-color: #1867c0 !important;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+      0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    font-size: 1rem;
+    height: 34px;
+    margin: 0.3rem;
+    min-width: 34px;
+    padding: 0 5px;
+    text-decoration: none;
+    transition: 0.3s cubic-bezier(0, 0, 0.2, 1);
+    width: auto;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      color: white;
+    }
+  }
+}
 </style>
