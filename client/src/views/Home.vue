@@ -46,7 +46,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <SuperSale />
+    <!-- <SuperSale :superSale="superSale"/> -->
     <Instagram />
     <About/>
     <Footer/>
@@ -59,7 +59,7 @@ import Special from "../components/special.vue";
 import Instagram from "../components/instagram.vue";
 import About from "../components/aboutContact.vue";
 import Footer from "../components/footer.vue";
-import SuperSale from "../components/superSale.vue";
+// import SuperSale from "../components/superSale.vue";
 import SwiperCore, { Pagination, EffectFade, Autoplay } from "swiper";
 import { Swiper, SwiperSlide, directive } from "vue-awesome-swiper";
 import "swiper/swiper-bundle.css";
@@ -97,17 +97,17 @@ export default {
         // Some Swiper option/callback...
       },
       dialog: false,
-      products: "",
-      productsNew:'',
+      products: [],
+      productsNew:[],
       productId: '',
       clickedId: false,
+      superSale:[]
     };
   },
   components: {
     Swiper,
     SwiperSlide,
     Special,
-    SuperSale,
     Card,
     Footer,
     About,
@@ -137,6 +137,17 @@ export default {
           return n.new === 'on';
         });
       });
+    await axios
+      .get("http://localhost:3000/api")
+      .then((res) => res.data)
+      .then((card) => {
+        console.log(card);
+        this.superSale = card.filter(n => {
+          if(100-(Math.floor(n.sale/(n.price/100))) >= 50 ){
+            return true;
+          }
+        })
+      });  
   },
   methods: {
     selectId(select) {

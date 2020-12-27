@@ -132,6 +132,10 @@ export default {
           title: "Женщины",
           item: [
             {
+              name:'Все',
+              href:"/women/all"
+            },
+            {
               name: "Декоративная Косметика",
               href: "/women/cosmetic",
             },
@@ -158,8 +162,12 @@ export default {
           ],
         },
         {
-          title: "Мужчины",
+          title: "TonyMoly",
           item: [
+            {
+              name:'Все',
+              href:"/man/all"
+            },
             {
               name: "Декоративная Косметика",
               href: "/man/cosmetic",

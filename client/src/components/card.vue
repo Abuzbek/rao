@@ -9,8 +9,16 @@
       v-ripple="{ class: '#00bf54' }"
       class="white--text align-end cardItem"
       :src="img"
-      :lazy-src="require('../assets/no-image.jpg')"
+      lazy-src="https://www.lesoshoppe.com/img/default.jpg"
     >
+      <template v-slot:placeholder>
+        <v-row class="fill-height ma-0" align="center" justify="center">
+          <v-progress-circular
+            indeterminate
+            color="#ffd66b"
+          ></v-progress-circular>
+        </v-row>
+      </template>
     </v-img>
     <v-card-subtitle class="pb-0">
       {{ category }}
@@ -93,7 +101,9 @@ export default {
   font-size: 19px;
   font-weight: 500;
 }
-.cardItem{max-height: 300px;}
+.cardItem {
+  max-height: 300px;
+}
 .product_sale {
   position: absolute;
   top: 22px;
@@ -135,7 +145,9 @@ export default {
 .cardBtn {
   color: #f4f4f4;
 }
-@media (max-width:599px) {
-  .cardItem{max-height: 100% !important;}
+@media (max-width: 599px) {
+  .cardItem {
+    max-height: 100% !important;
+  }
 }
 </style>

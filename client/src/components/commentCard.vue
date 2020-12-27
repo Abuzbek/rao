@@ -5,12 +5,12 @@
         <img :src="img" alt="" />
       </v-list-item-avatar>
       <v-list-item-content>
-        <v-list-item-title class="headline mb-1">
-          {{ name }}
-        </v-list-item-title>
-        <v-list-item-subtitle>
+        <v-list-item-subtitle class="subtitle-1 subtitle_card">
           {{ comment }}
         </v-list-item-subtitle>
+        <a :href="'tel:'+phone" class="title mb-1">
+          {{ name }}
+        </a>
       </v-list-item-content>
     </v-list-item>
   </v-card>
@@ -21,9 +21,17 @@ export default {
   props: {
     img: String,
     name: String,
-    commentary: String,
+    comment: String,
     _id:String
   },
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.subtitle_card{
+    -webkit-line-clamp: initial !important;
+}
+a.title{
+  color: rgba($color: #000000, $alpha: 0.8);
+  text-decoration: none;
+}
+</style>

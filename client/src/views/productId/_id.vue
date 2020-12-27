@@ -84,12 +84,15 @@
                 ></v-textarea>
               </v-col>
               <v-col cols="12" md="4" sm="6">
-                <v-file-input
-                  label="Фото продукта"
-                  filled
-                  prepend-icon="mdi-camera"
-                  v-model="img"
-                ></v-file-input>
+                <input type="file"  name="" id="inputImage" />
+                <label for="inputImage" id="labelFile">
+                  <v-icon>
+                    mdi-camera
+                  </v-icon>
+                  <span>
+                    Изображение
+                  </span>
+                </label>
               </v-col>
               <v-col cols="12" md="4" sm="6">
                 <v-text-field
@@ -110,7 +113,7 @@
                 <v-text-field
                   v-model="email"
                   :rules="emailRules"
-                  label="Эл. адрес"
+                  label="Телефонный номер"
                   filled
                   required
                 ></v-text-field>
@@ -129,7 +132,7 @@
           </v-card>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row v-if="items.length">
         <v-col cols="12">
           <paginate name="items" :list="items" :per="8" class="paginate-list">
             <v-col v-for="(item, n) in paginated('items')" cols="12" :key="n">
@@ -149,6 +152,7 @@
       </v-row>
     </v-container>
     <Footer />
+    <Alert/> 
   </div>
 </template>
 <script>
@@ -156,6 +160,7 @@ import axios from "axios";
 import Count from "../../components/count";
 import Footer from "../../components/footer";
 import CommentCard from "../../components/commentCard";
+import Alert from "../../components/alert";
 export default {
   name: "productId",
   data: () => ({
@@ -163,7 +168,7 @@ export default {
     productPush: null,
     counterDialog: false,
     valid: false,
-    img: null,
+    img: '',
     firstname: "",
     commentary: "",
     nameRules: [
@@ -171,11 +176,7 @@ export default {
       (v) => v.length <= 20 || "Name must be less than 20 characters",
     ],
     commentaryRules: [(v) => !!v || "Comment is required"],
-    email: "",
-    emailRules: [
-      (v) => !!v || "E-mail is required",
-      (v) => /.+@.+/.test(v) || "E-mail must be valid",
-    ],
+    email: "+998",
     items: [],
     paginate: ["items"],
   }),
@@ -183,6 +184,7 @@ export default {
     Count,
     Footer,
     CommentCard,
+    Alert
   },
   computed: {
     getParams() {
@@ -198,6 +200,23 @@ export default {
         this.id = id;
         this.items = id.comments;
       });
+    let vm = this;
+    let imageLoader = document.querySelector("#inputImage");
+    imageLoader.addEventListener("change", handleImage, false);
+    function handleImage(e) {
+      let filetype = imageLoader.files[0].type;
+      let reader = new FileReader();
+      reader.onload = function(e) {
+        if (filetype.indexOf("image") > -1) {
+          vm.img = e.target.result
+        } else if (filetype.indexOf("video") > -1) {
+          document.querySelector("video").src = reader.result;
+        } else if (filetype.indexOf("audio") > -1) {
+          document.querySelector("audio").src = reader.result;
+        }
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
   },
   methods: {
     addCart() {
@@ -211,13 +230,15 @@ export default {
         category: this.id.category,
       };
     },
-    addComment(){
-      axios
-        .post(`http://localhost:3000/api/edit/${this.getParams}`, {
-          name:this.firstname,
-          comment:this.commentary,
-          email:this.email,
-        })
+    addComment() {
+      axios.post(`http://localhost:3000/api/edit/${this.getParams}`, {
+        name: this.firstname,
+        comment: this.commentary,
+        email: this.email,
+        img:this.img
+      });
+      this.$router.push("/");
+      window.location.reload();
     },
     counter(counter) {
       this.counterDialog = counter;
@@ -298,7 +319,7 @@ hr {
     transition: 0.3s cubic-bezier(0, 0, 0.2, 1);
     width: auto;
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+      0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -329,5 +350,26 @@ hr {
       color: white;
     }
   }
+}
+#labelFile{
+  background: rgba(0, 0, 0, 0.06);
+  display: inline-block;
+  width: 100%;
+  min-height: 56px;
+padding: 0 12px;
+display: flex;
+justify-content: start;
+align-items: center;
+border-bottom:1px solid rgba(0, 0, 0, 0.42);
+cursor: pointer;
+border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+span{
+  margin-left: 9px;
+  color: rgba(0, 0, 0, 0.6);
+}
+}
+#inputImage{
+  display: none;
 }
 </style>

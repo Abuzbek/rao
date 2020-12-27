@@ -14,14 +14,19 @@
         </v-col>
       </v-row>
     </v-container>
+    <Footer/>
   </div>
 </template>
 <script>
 import axios from "axios";
+import Footer from "../components/footer";
 export default {
   data: () => ({
     post: [],
   }),
+  components:{
+    Footer
+  },
   mounted() {
     axios
       .get("http://localhost:3000/post/api")

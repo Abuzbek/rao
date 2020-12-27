@@ -1,6 +1,6 @@
 <template>
   <div class="checkout_cart">
-    <img :src="img" alt="jpg" />
+    <img :src="img" alt="jpg" lazy-src="https://www.lesoshoppe.com/img/default.jpg" />
     <div class="checkout_body">
       <h3>{{ name }}</h3>
     </div>

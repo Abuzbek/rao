@@ -55,7 +55,7 @@ router.post("/api/edit/:id", (req, res, next) => {
   Product.updateOne(
     query,
     {
-      comments:[...this.comments,req.body]
+      $push:{comments:req.body}
     },
     (err, data) => {
       if (err) {
