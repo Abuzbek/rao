@@ -1,0 +1,63 @@
+extends layout
+
+block content
+  .product_box
+    .box_img
+      img(src=product.img, alt="")
+    .box-title
+      h3= product.name
+      p= product.description 
+      if product.sale
+        p Price :  
+          span.textLine #{product.price} so'm 
+        p Sale : #{product.sale} so'm
+      else
+         p Price : #{product.price} so'm
+      a(href="/admin/product/delete/"+product._id).btn.btn-danger Delete
+  .container.p-4
+    h1.text-center.mb-4 Update Product
+    .row
+      .col
+        form(action="/admin/product/edit/"+product._id method="POST" enctype="multipart/form-data")
+          .row
+            .col-md-6.mb-4
+              label(for="name").form-label Product Name
+              input.form-control( value=product.name type="text" id="name" name="name")   
+            .col-md-6.mb-4
+              label(for="price").form-label Product price
+              input.form-control( value=product.price type="price" id="price" name="price")
+            .col-md-6.mb-4
+              label(for="sale").form-label Product sale
+              input.form-control( value=product.sale type="price" id="sale" name="sale")
+            .col-md-6.mb-4
+              label(for="sale").form-label Product category
+              select( class="form-select" name="category" value=product.category)
+                option( value="Декоративная Косметика" ) Декоративная Косметика
+                option( value="Средства для депиляции")  Средства для депиляции
+                option( value="Уход за волосами") Уход за волосами
+                option( value="Пакет масок") Пакет масок
+                option( value="Полноценный уход за кожей") Полноценный уход за кожей
+                option( value="НАБОР") НАБОР
+            .col-md-6.mb-4
+              p Selection Client
+              .form-check
+                input#flexRadioDefault1.form-check-input(type='radio' name='flexRadioDefault' value="women")
+                label.form-check-label(for='flexRadioDefault1')
+                  | Women
+              .form-check
+                input#flexRadioDefault2.form-check-input(type='radio' name='flexRadioDefault' value="man")
+                label.form-check-label(for='flexRadioDefault2')
+                  | Tony Moly
+            .col-md-6.mb-4
+              p Upload File
+              input(type="file" name="img" id="inputImage")
+              label(for="inputImage" id="labelFile")
+                span Photo Upload
+            .col-12.mb-4
+              label(for="floatingTextarea") Description
+              textarea( placeholder=product.description class="form-control" id="floatingTextarea" style="min-height:250px; resize:none;")
+            div( class="d-grid gap-2 col-6 mx-auto my-4")
+              button( class="btn btn-primary" type="submit" ) Send
+              
+                     
+

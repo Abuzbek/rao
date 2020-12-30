@@ -1,0 +1,53 @@
+extends layout
+
+block content
+  if user.username === "AbuzCoder"
+    .container.p-4
+      h1.text-center.mb-4 Add Product
+      .row
+        .col-md-10.m-auto
+          form(action="/admin" method="POST" enctype="multipart/form-data")
+            .row
+              .col-md-6.mb-4
+                label(for="name").form-label Product Name
+                input.form-control( type="text" id="name" name="name")   
+              .col-md-6.mb-4
+                label(for="price").form-label Product price
+                input.form-control( type="number" id="price" name="price")
+              .col-md-6.mb-4
+                label(for="sale").form-label Product sale
+                input.form-control( type="number" id="sale" name="sale")
+              .col-md-6.mb-4
+                label(for="sale").form-label Product category
+                select( class="form-select" name="category" )
+                  option( value="Декоративная Косметика" ) Декоративная Косметика
+                  option( value="Средства для депиляции")  Средства для депиляции
+                  option( value="Уход за волосами") Уход за волосами
+                  option( value="Пакет масок") Пакет масок
+                  option( value="Полноценный уход за кожей") Полноценный уход за кожей
+                  option( value="НАБОР") НАБОР
+              .col-md-6.mb-4
+                p Selection Client
+                .form-check
+                  input#flexRadioDefault1.form-check-input(type='radio' name='flexRadioDefault' value="women")
+                  label.form-check-label(for='flexRadioDefault1')
+                    | Women
+                .form-check
+                  input#flexRadioDefault2.form-check-input(type='radio' name='flexRadioDefault' value="man")
+                  label.form-check-label(for='flexRadioDefault2')
+                    | Tony Moly
+              .col-md-6.mb-4
+                p Upload File
+                input(type="file" name="img" id="inputImage")
+                label(for="inputImage" id="labelFile")
+                  span Photo Upload
+              .col-12.mb-4
+                label(for="floatingTextarea") Description
+                textarea(  class="form-control" id="floatingTextarea" style="min-height:250px; resize:none;")
+              div( class="d-grid gap-2 col-6 mx-auto my-4")
+                button( class="btn btn-primary" type="submit" ) Send
+  else 
+    h1 
+      | SIZ ADMIN EMASSIZ
+      a(href="/").mx-3 iltimos chiqib keting
+                  

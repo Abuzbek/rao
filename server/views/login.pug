@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1.text-center #{title}
+  .container
+    .row
+      .col-md-6.m-auto
+        .card
+          .card-body
+            form(action="/admin/login" method="post")
+              input(type="text" name="username" class="form-control mb-4" placeholder="USERNAME")
+              input(type="text" name="password" class="form-control mt-4" placeholder="PASSWORD")
+              button(type="submit").btn.btn-success.mt-4 SEND

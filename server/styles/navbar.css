@@ -1,0 +1,33 @@
+li {
+  list-style: none;
+}
+.sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+aside {
+  border-right: 1px solid #dee2e6 !important;
+  height: 100vh;
+  background-color: #f8f9fa !important;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width:25% ;
+  left: 0;
+}
+aside nav ul li a {
+  color: #2a2a2a;
+  text-decoration: none;
+}
+aside .list-group-item {
+  border: none;
+  color: #495057;
+  padding: 0.75rem 1.25rem;
+  background: transparent;
+  border-radius: 10em !important;
+}
+aside .list-group-item:hover {
+  background-color: #dae0e5 !important;
+}

@@ -1,54 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-    form(action="/" method="POST")
-      input( class="form-control" type="text", style="margin-bottom:20px;" name="name" placeholder="Product name ...") 
-      br
-      input( class="form-control" type="text", style="margin-bottom:20px;" name="sale" placeholder="Product sale ...") 
-      br
-      input( class="form-control" type="text", style="margin-bottom:20px;" name="price" placeholder="Product price ...") 
-      br
-      input( class="form-control" type="text", style="margin-bottom:20px;" name="img" placeholder="Product img ...") 
-      br
-      input( class="form-control" type="text", style="margin-bottom:20px;" name="category" placeholder="Product category ...") 
-      br
-      textarea(
-      name="description",
-      cols="30",
-      rows="10"
-      placeholder="Product description ..."
-      style="resize:none;"
-      class="form-control"
-      )
-      br
-      button(type="submit" class="btn btn-success") send
-
-    form(action="/post/api" method="POST" class="mt-5")
-      input(
-        class="form-control"
-        type="text",
-        style="margin-bottom:20px;"
-        name="name"
-        placeholder="Product name ..."
-      ) 
-      br
-      input(
-        class="form-control"
-        type="text",
-        style="margin-bottom:20px;"
-        name="img"
-        placeholder="Product category ..."
-      ) 
-      br
-      textarea(
-        name="description",
-        cols="30",
-        rows="10"
-        placeholder="Product description ..."
-        style="resize:none;"
-        class="form-control"
-      )
-      br
-      button(type="submit" class="btn btn-success") send    
+  h1.text-center Products
+  .container-fluid.px-3
+    ul
+      each n, i in product
+        li.product_list
+          a(href=`/admin/product/edit/${n._id}`) 
+            img(src=`${n.img}`, alt="img")
+            h3 #{n.name}
+            p #{n.category}
+            if n.sale
+              span #{n.sale}
+            else  
+              span #{n.price}  

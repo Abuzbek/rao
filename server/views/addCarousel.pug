@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  if user.username === "AbuzCoder"
+    .container.p-4
+      h1.mx-4.text-center ADD CAROUSEL
+      .row
+        .col-md-8.m-auto
+          form(action="/admin/carousel" method="POST").d-flex.justify-content-center.flex-column.align-items-center
+            input(type="text" class="form-control" name="img" id="img" placeholder="https://i.ib.co")
+            button(type="submit" class="btn btn-success").my-4.mx-auto SEND CAROUSEL
+      .row
+        each n ,i in data
+          .col-md-4
+            .card
+              .card-img
+                img(src=n.img, alt="")
+              .card-body
+                a(href="/admin/carousel/delete/"+n._id).btn.btn-danger DELETE

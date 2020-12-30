@@ -1,0 +1,60 @@
+extends layout
+
+block content
+  .container
+    h1.text-center.mb-5 ADD POST COMMUNITY
+    .row
+      .col-lg-8.col-md-10.mx-auto
+        form(action="/admin/community" method="POST")
+          .row
+            .col-md-6
+              input(type="text" name="name" placeholder="POST TITLE" ).mb-4.form-control
+            .col-md-6
+              input(type="text" name="img" placeholder="POST IMG" ).mb-4.form-control
+            .col-12
+              label(for="floatingTextarea" class="form-label") Description
+              textarea(
+                id="floatingTextarea"
+                name="description",
+                placeholder="POST Description"
+                style="resize:none;min-height:250px"
+                class="form-control")  
+            div( class="d-grid gap-2 col-6 mx-auto my-4")
+                button( class="btn btn-primary" type="submit" ) Send    
+  .container.my-5
+    if data.length
+      h1.text-center ALL POSTS
+    .row
+      each n,i in data
+        .col-md-4
+          .card
+            .card-img
+              img(src=n.img, alt="")
+            .card-body
+              .card-title #{n.name}  
+              p.card-text #{n.description}
+              a(href="/admin/community/"+n._id).btn.btn-danger.my-3 DELETE
+              div( class="accordion" id="accordionExample")
+                div(class="accordion-item")
+                  h2#headingOne.accordion-header
+                    button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne')
+                      | UPDATE POST
+                  #collapseOne.accordion-collapse.collapse(aria-labelledby='headingOne' data-bs-parent='#accordionExample')
+                    .accordion-body
+                      form(action="/admin/community/edit/"+n._id method="POST")
+                        .row
+                          .col-md-12
+                            input(type="text" name="name" value=n.name placeholder="POST TITLE" ).mb-4.form-control
+                          .col-md-12
+                            input(type="text" name="img" value=n.img  placeholder="POST IMG" ).mb-4.form-control
+                          .col-12
+                            label(for="floatingTextarea" class="form-label") Description
+                            textarea(
+                              value=n.description 
+                              id="floatingTextarea"
+                              name="description",
+                              placeholder="POST Description"
+                              style="resize:none;min-height:250px"
+                              class="form-control")  
+                          div( class="d-grid gap-2 col-6 mx-auto my-4")
+                              button( class="btn btn-primary" type="submit" ) Send 

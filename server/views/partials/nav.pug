@@ -1,0 +1,13 @@
+nav.navbar.navbar-expand-sm.navbar-light.bg-light(style="border-bottom: 1px solid #dee2e6!important;")
+  .container-fluid.px-3
+    a(href="/").navbar-brand Home
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse.pe-5
+      ul.navbar-nav.ms-auto.mb-2.mb-lg-0.me-5  
+        li.nav-item.dropdown
+          a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
+            | Login
+          ul.dropdown-menu(aria-labelledby='navbarDropdown')
+            li
+              a.dropdown-item(href='/admin/logout') LogOut

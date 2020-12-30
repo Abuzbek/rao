@@ -3,7 +3,24 @@ html
   head
     title= title
     link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/navbar.css')
+    link(rel='stylesheet', href='/index.css')
   body
-    block content
+    != messages('flash', locals)
+    if errors
+      each error , i in errors
+        div(class="mt-5 alert alert-dismissible fade show alert-danger" role='alert')
+          strong #{error.msg}
+    .container-fluid.p-0
+      if user
+        if user.username === "AbuzCoder"
+          include partials/nav.pug
+      .row.g-0
+        if user
+          if user.username === "AbuzCoder"
+            .col-md-3
+              include partials/navbar.pug
+        .col-md-9
+          block content
     
     script(src="/bootstrap/dist/js/bootstrap.min.js")

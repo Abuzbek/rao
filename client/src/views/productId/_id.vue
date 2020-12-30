@@ -55,12 +55,12 @@
           </v-row>
         </v-col>
       </v-row>
-      <v-row v-if="id.photos">
-        <h1 class="display-2 font-weight-bold text-center">
-          Информация о продукте
-        </h1>
+      <h1 v-if="id.image" class="display-2 font-weight-bold text-center">
+        Информация о продукте
+      </h1>
+      <v-row v-if="id.image">
         <v-col cols="12" md="8" class="ma-auto">
-          <img :src="n.img" v-for="(n, i) in id.photos" :key="i" alt="" />
+          <img :src="n.img" v-for="(n, i) in id.image" :key="i" alt="" />
         </v-col>
       </v-row>
       <h1 class="mt-8 display-2 font-weight-bold text-center">
@@ -84,7 +84,7 @@
                 ></v-textarea>
               </v-col>
               <v-col cols="12" md="4" sm="6">
-                <input type="file"  name="" id="inputImage" />
+                <input type="file" name="" id="inputImage" />
                 <label for="inputImage" id="labelFile">
                   <v-icon>
                     mdi-camera
@@ -152,7 +152,7 @@
       </v-row>
     </v-container>
     <Footer />
-    <Alert/> 
+    <Alert />
   </div>
 </template>
 <script>
@@ -168,7 +168,8 @@ export default {
     productPush: null,
     counterDialog: false,
     valid: false,
-    img: '',
+    img: "",
+    photo: "",
     firstname: "",
     commentary: "",
     nameRules: [
@@ -184,7 +185,7 @@ export default {
     Count,
     Footer,
     CommentCard,
-    Alert
+    Alert,
   },
   computed: {
     getParams() {
@@ -208,7 +209,7 @@ export default {
       let reader = new FileReader();
       reader.onload = function(e) {
         if (filetype.indexOf("image") > -1) {
-          vm.img = e.target.result
+          vm.img = e.target.result;
         } else if (filetype.indexOf("video") > -1) {
           document.querySelector("video").src = reader.result;
         } else if (filetype.indexOf("audio") > -1) {
@@ -235,7 +236,7 @@ export default {
         name: this.firstname,
         comment: this.commentary,
         email: this.email,
-        img:this.img
+        img: this.img,
       });
       this.$router.push("/");
       window.location.reload();
@@ -351,25 +352,25 @@ hr {
     }
   }
 }
-#labelFile{
+#labelFile {
   background: rgba(0, 0, 0, 0.06);
   display: inline-block;
   width: 100%;
   min-height: 56px;
-padding: 0 12px;
-display: flex;
-justify-content: start;
-align-items: center;
-border-bottom:1px solid rgba(0, 0, 0, 0.42);
-cursor: pointer;
-border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-span{
-  margin-left: 9px;
-  color: rgba(0, 0, 0, 0.6);
+  padding: 0 12px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+  cursor: pointer;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  span {
+    margin-left: 9px;
+    color: rgba(0, 0, 0, 0.6);
+  }
 }
-}
-#inputImage{
+#inputImage {
   display: none;
 }
 </style>
