@@ -4,7 +4,7 @@ block content
   h1.text-center Products
   .container-fluid.px-3
     ul
-      each n, i in product
+      each n, i in products
         li.product_list
           a(href=`/admin/product/edit/${n._id}`) 
             img(src=`${n.img}`, alt="img")
@@ -14,3 +14,6 @@ block content
               span #{n.sale}
             else  
               span #{n.price}  
+          .row
+            .col-6
+              //- each n ,i in 

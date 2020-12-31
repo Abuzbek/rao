@@ -67,22 +67,7 @@ SwiperCore.use([Pagination, EffectFade, Autoplay]);
 export default {
   data() {
     return {
-      banners: [
-        {
-          img:
-            "https://cdn.shopify.com/s/files/1/0265/6534/5322/files/slide1.jpg?v=1586335554",
-          text: "ALL",
-        },
-        {
-          img: "https://www.ivl.com/Content/Html/MAKANA/images/bg-1.jpg",
-          text: "FOR",
-        },
-        {
-          img:
-            "https://skincare.7uptheme.net/wp-content/uploads/2019/07/slider18b.jpg",
-          text: "YOU",
-        },
-      ],
+      banners: [],
       swiperOptions: {
         loop: true,
         effect: "fade",
@@ -126,6 +111,13 @@ export default {
           console.log(i)
           return n.new !== 'on';
         });
+      });
+    await axios 
+      .get('http://localhost:3000/api/carousel')
+      .then((res) => res.data)
+      .then((card) => {
+        console.log(card);
+        this.banners = card
       });
     await axios
       .get("http://localhost:3000/api")

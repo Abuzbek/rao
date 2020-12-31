@@ -7,17 +7,18 @@ const upload = require("../helper/file");
 const Users = require("../model/User");
 
 const Post = require("../model/Posts");
+const Admins = require("../model/Admin");
 
 const Carousel = require("../model/Carousel");
 
-const eA = require('../helper/eA')
+const eA = require("../helper/eA");
 // ======== Add Product +======================
 
 router.get("/", eA, (req, res, next) => {
   res.render("admin", { title: "Admin" });
 });
 
-router.post('/',upload.single("img"),(req,res, next)=>{
+router.post("/", upload.single("img"), (req, res, next) => {
   const product = new Product({
     name: req.body.name,
     price: req.body.price,
@@ -25,35 +26,33 @@ router.post('/',upload.single("img"),(req,res, next)=>{
     description: req.body.description,
     category: req.body.category,
     gender: req.body.gender,
-    img:req.file.filename
-  })
-  product.save((err,data)=>{
-    if(err){
+    img: "/img/" + req.file.filename,
+  });
+  product.save((err, data) => {
+    if (err) {
       console.log(err);
-    }
-    else{
+    } else {
       console.log(data);
       res.redirect("/admin");
-      req.flash('success', "Maxsulot muaffaqiyatli qo'shildi")
+      req.flash("success", "Maxsulot muaffaqiyatli qo'shildi");
     }
-  })
-})
+  });
+});
 
 // ======== Add Product +======================
 
-
-router.get("/product",eA, (req, res, next) => {
+router.get("/product", eA, (req, res, next) => {
   Product.find({}, (err, data) => {
     if (err) {
       console.log(err);
     } else {
-      res.render("index", { title: "Admin", product: data });
+      res.render("index", { title: "Admin", products: data });
     }
   });
 });
 //  =============== findById production ======================
 
-router.get("/product/edit/:id",eA, (req, res, next) => {
+router.get("/product/edit/:id", eA, (req, res, next) => {
   Product.findById(req.params.id, (err, data) => {
     if (err) {
       console.log(err);
@@ -65,8 +64,104 @@ router.get("/product/edit/:id",eA, (req, res, next) => {
     }
   });
 });
+router.get("/product/:id/comments", eA, (req, res, next) => {
+  Product.findById(req.params.id, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("product_id_comments", {
+        title: data.name,
+        product: data,
+      });
+    }
+  });
+});
+router.get('/product/:id/images', eA,(req,res)=>{
+  Product.findById(req.params.id, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("product_id_images", {
+        title: data.name,
+        product: data,
+      });
+    }
+  });
+})
+//  ============ add Product images ==============
 
-router.get("/product/delete/:id",eA, function (req, res, next) {
+router.post('/product/image/:id',upload.single("img"), (req,res)=>{
+  const query = { _id: req.params.id };
+  console.log(req.body);
+  Product.updateOne(
+    query,
+    {
+      $push:{image:{img:'/img/'+req.file.filename}}
+    },
+    (err, data) => {
+      if (err) {
+        console.log("error" + err);
+      } else {
+        console.log("success" + data);
+        res.redirect("/admin/product/edit/" + req.params.id)
+      }
+    }
+  );
+})
+
+//  ============ add Product images ==============
+
+//  ============= delete Product Comments ============
+router.post("/comment/delete/:id", (req, res) => {
+  const query = { _id: req.params.id };
+  console.log(Object(req.body.object));
+  Product.updateOne(
+    query,
+    {
+      $pull: {
+        comments: {
+          name: req.body.name,
+          comment: req.body.comment,
+          img: req.body.img,
+        },
+      },
+    },
+    (err, data) => {
+      if (err) {
+        console.log("error" + err);
+      } else {
+        console.log("success" + data);
+        res.redirect("/admin/product/edit/" + req.params.id);
+        req.flash("info", "comment o'chirildi");
+      }
+    }
+  );
+});
+router.post("/image/delete/:id", (req, res) => {
+  const query = { _id: req.params.id };
+  Product.updateOne(
+    query,
+    {
+      $pull: {
+        image: {
+          img: req.body.img,
+        },
+      },
+    },
+    (err, data) => {
+      if (err) {
+        console.log("error" + err);
+      } else {
+        console.log("success" + data);
+        res.redirect("/admin/product/edit/" + req.params.id);
+        req.flash("info", "image o'chirildi");
+      }
+    }
+  );
+});
+//  ============= delete Product Comments ============
+
+router.get("/product/delete/:id", eA, function (req, res, next) {
   Product.findByIdAndRemove(req.params.id, (err, data) => {
     if (err) {
       console.log(err);
@@ -87,12 +182,13 @@ router.post("/product/edit/:id", upload.single("img"), (req, res, next) => {
     description: req.body.description,
     category: req.body.category,
     gender: req.body.gender,
+    img: "",
   };
 
-  const account = Product.findById(req.params.id);
+  // const account = Product.findById(req.params.id);
   console.log(req.file);
   if (req.file) {
-    user.img = "./img/" + req.file.filename;
+    user.img = `./img/${req.file.filename}`;
   }
   const query = { _id: req.params.id };
   Product.updateOne(query, user, (err) => {
@@ -105,38 +201,39 @@ router.post("/product/edit/:id", upload.single("img"), (req, res, next) => {
 });
 
 //  =============== METHOD POST EDIT PRODUCT ================
-router.get('/carousel',eA, (req,res,next)=>{
-  let carousel = Carousel.find({}, (err,data)=>{
+router.get("/carousel", eA, (req, res, next) => {
+  let carousel = Carousel.find({}, (err, data) => {
     if (err) {
       console.log(err);
     } else {
-      res.render('addCarousel', {
-        title:'admin carousel',
-        data:data
-      })
+      res.render("addCarousel", {
+        title: "admin carousel",
+        data: data,
+      });
     }
-  })
-})
+  });
+});
 // ============= add carousel =============
 
-router.post('/carousel', (req,res,next)=>{
-  let carousel = new Carousel(req.body)
-  carousel.save((err,date)=>{
+router.post("/carousel", upload.single("img"), (req, res, next) => {
+  let carousel = new Carousel({
+    img: "/img/" + req.file.filename,
+  });
+  carousel.save((err, date) => {
     if (err) {
       console.log(err);
     } else {
       console.log(date);
-      res.redirect('/admin/carousel')
-      req.flash('success', 'Carousel Muaffaqiyatli qo\'\shildi')
+      res.redirect("/admin/carousel");
+      req.flash("success", "Carousel Muaffaqiyatli qo'shildi");
     }
-  })
-})
+  });
+});
 
 // ============= add carousel =============
 
-
 //  =================== delete carousel ==============
-router.get('/carousel/delete/:id',eA, (req,res,next)=>{
+router.get("/carousel/delete/:id", eA, (req, res, next) => {
   Carousel.findByIdAndRemove(req.params.id, (err, data) => {
     if (err) {
       console.log(err);
@@ -146,56 +243,62 @@ router.get('/carousel/delete/:id',eA, (req,res,next)=>{
       req.flash("success", "Muaffaqiayatli maxsulot o'chirildi");
     }
   });
-})
+});
 
 //  =================delete carousel ============
-
 
 //  =============== findById production ======================
 
 //  ============ COMMUNITY ===================
-router.get('/community', (req,res,next)=>{
-  Post.find({}, (err,data)=>{
+router.get("/community",eA, (req, res, next) => {
+  Post.find({}, (err, data) => {
     if (err) {
       console.log(err);
     } else {
-      res.render('community', {
-        title:"ADD POSTS", 
-        data:data
-      })
+      res.render("community", {
+        title: "ADD POSTS",
+        data: data,
+      });
     }
-  })
-})
-router.post('/community', (req,res,next)=>{
-  const post = new Post(req.body)
-  post.save((err,data)=>{
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(data);
-      res.redirect('/admin/community')
-      req.flash('info', "POST muaffaqiyatli qoshildi")
-    }
-  })
-})
-router.get('/community/:id', (req,res,next)=>{
-  Post.findByIdAndRemove(req.params.id, (err, data)=>{
+  });
+});
+router.post("/community", upload.single("img"), (req, res, next) => {
+  console.log(req.file, req.body);
+  const post = new Post({
+    name: req.body.name,
+    description: req.body.description,
+    img: "/img/" + req.file.filename,
+  });
+  post.save((err, data) => {
     if (err) {
       console.log(err);
     } else {
       console.log(data);
-      res.redirect('/admin/community')
+      res.redirect("/admin/community");
+      req.flash("info", "POST muaffaqiyatli qoshildi");
     }
-  })
-})
-router.post("/community/edit/:id",  (req, res, next) => {
+  });
+});
+router.get("/community/:id",eA, (req, res, next) => {
+  Post.findByIdAndRemove(req.params.id, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+      res.redirect("/admin/community");
+    }
+  });
+});
+router.post("/community/edit/:id", upload.single("img"), (req, res, next) => {
   let user = {
     name: req.body.name,
     description: req.body.description,
-    img:req.body.img
+    img: '',
   };
-
-  const account = Post.findById(req.params.id);
+  console.log(req.file);
+  if (req.file) {
+    user.img = `/img/${req.file.filename}`;
+  }
   const query = { _id: req.params.id };
   Post.updateOne(query, user, (err) => {
     if (err) console.log(err);
@@ -205,6 +308,67 @@ router.post("/community/edit/:id",  (req, res, next) => {
     }
   });
 });
+//  =========== users checkout ============
+router.post("/user_chechout",eA, (req, res, next) => {
+  const user = new Users(req.body);
+  user.save((err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+    }
+  });
+});
+router.get("/clients",eA, (req, res, next) => {
+  Users.find({}, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("clients", {
+        title: "Client Page",
+        product: data,
+      });
+    }
+  });
+});
+router.get("/clients/delete/:id",eA, (req, res) => {
+  Users.findByIdAndRemove(req.params.id, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+      res.redirect("/admin/clients");
+      req.flash("success", "user muaffaqiyatli o'chdi");
+    }
+  });
+});
 
+//   ============ Admins ==============
+
+router.get("/admins",eA, (req, res) => {
+  Admins.find({}, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("admins", {
+        data: data,
+        title: "Adminstrators",
+      });
+    }
+  });
+});
+router.get("/admins/:id",eA, (req, res) => {
+  Admins.findByIdAndRemove(req.params.id, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+      res.redirect('/admin/admins')
+      req.flash('success', "muaffaqiyatli tizimdan chiqarildi")
+    }
+  });
+});
+
+//   ============ Admins ==============
 
 module.exports = router;

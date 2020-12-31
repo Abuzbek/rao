@@ -1,6 +1,6 @@
-.messages
+.messages(style="position:relative; z-index:80;")
   each type in Object.keys(messages)
     ul(class="#{type}")
       each message in messages[type]
-        div(class="mt-5 alert alert-dismissible fade show alert-"+type role='alert')
+        div(class="mt-5 alert alert-dismissible fade show alert-"+type role='alert' )
             strong= message

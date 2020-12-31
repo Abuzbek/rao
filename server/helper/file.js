@@ -2,7 +2,7 @@ const multer = require('multer');
 const moment = require('moment')
 const storage = multer.diskStorage({
     destination(req, file, cb) {
-        cb(null, 'public/img')
+        cb(null, 'server/public/img')
     },
     filename(req, file, cb) {
         const date = moment().format('DDMMYYYY-HHmmss_SSS')

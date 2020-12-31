@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  .container
+    .row
+      .col-8.mx-auto
+        h1.my-4 ADD PRODUCT IMAGES
+        form(action="/admin/product/image/"+product._id method="POST" enctype="multipart/form-data").mt-5.mb-5
+          input(type="file" name="img" id="inputImage")
+          label(for="inputImage" id="labelFile")
+            span Photo Upload
+          button(type="submit").btn.btn-danger.my-4 Delete 
+    .row
+      each l , i in product.image
+        .col-6
+          .card
+            img(src=l.img, alt="").card-img
+            .card-body
+              form(action="/admin/image/delete/"+product._id method="POST")
+                input(style="display:none;" type="text" value=l.img name="img")
+                button(type="submit").btn.btn-danger Delete 

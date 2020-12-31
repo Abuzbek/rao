@@ -6,8 +6,10 @@ block content
       h1.mx-4.text-center ADD CAROUSEL
       .row
         .col-md-8.m-auto
-          form(action="/admin/carousel" method="POST").d-flex.justify-content-center.flex-column.align-items-center
-            input(type="text" class="form-control" name="img" id="img" placeholder="https://i.ib.co")
+          form(action="/admin/carousel" method="POST" enctype="multipart/form-data").d-flex.justify-content-center.flex-column.align-items-center
+            input(type="file" name="img" id="inputImage")
+            label(for="inputImage" id="labelFile")
+              span Photo Upload
             button(type="submit" class="btn btn-success").my-4.mx-auto SEND CAROUSEL
       .row
         each n ,i in data

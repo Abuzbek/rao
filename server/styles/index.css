@@ -51,3 +51,20 @@ ul li.product_list p{
 #inputImage {
   display: none;
 }
+#labelFiles {
+    background: rgba(0, 0, 0, 0.06);
+  display: inline-block;
+  width: 100%;
+  min-height: 56px;
+  padding: 0 12px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+  cursor: pointer;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+#inputImages{
+  display: none; 
+}

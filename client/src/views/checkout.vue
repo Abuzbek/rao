@@ -77,8 +77,9 @@ export default {
     sendForm(send){
       this.formDialog = send.trueFalse
       send.product = this.products
+      send.allPrice = this.productAllPrice
       setTimeout(()=>{
-        axios.post('http://localhost:3000/api/post', send)
+        axios.post('http://localhost:3000/admin/user_chechout', send)
       },100)
     }
   }

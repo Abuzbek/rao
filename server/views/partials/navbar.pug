@@ -7,11 +7,21 @@ aside
         a.list-group-item(href="/admin") Add Product
       li
         a.list-group-item(href="/admin/carousel") Add Carousel
-      li
-        a.list-group-item(href="/admin/product") Products
+      if products
+        li
+          a.list-group-item(href="/admin/product").d-flex.justify-content-between.align-items-center Products
+            span(style="background:blue; padding:1px 10px;margin-left:10px; border-radius:3px; color:white;") #{products.length}
+      else
+        li
+          a.list-group-item(href="/admin/product") Products
       li
         a.list-group-item(href="/admin/community") Community
-      li
-        a.list-group-item(href="/admin/users") Users
+      if product
+        li
+          a.list-group-item(href="/admin/clients").d-flex.justify-content-between.align-items-center Customers 
+            span(style="background:blue; padding:1px 10px;margin-left:10px;border-radius:3px; color:white;") #{product.length}
+      else
+         li
+          a.list-group-item(href="/admin/clients") Customers   
       li
         a.list-group-item(href="/admin/admins") Admins  

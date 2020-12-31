@@ -40,9 +40,9 @@
 <script>
 export default {
   data:()=>({
-    name:null,
-    phone:null,
-    telegram:null
+    name:'',
+    phone:'+998',
+    telegram:''
   }),
   methods:{
     sendForm(){
@@ -51,6 +51,7 @@ export default {
         phone:this.phone,
         telegram:this.telegram,
         trueFalse:false,
+        allPrice:0,
         product:[]
       })
       this.$router.push('/')

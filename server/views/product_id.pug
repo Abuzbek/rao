@@ -14,6 +14,14 @@ block content
       else
          p Price : #{product.price} so'm
       a(href="/admin/product/delete/"+product._id).btn.btn-danger Delete
+      .col-12.mt-4
+        .row
+          .col-6
+            a(href=`/admin/product/${product._id}/comments` ).btn.btn-info.mx-3
+              h4 COMMENTS
+          .col-6
+            a(href=`/admin/product/${product._id}/images` ).btn.btn-success.mx-3
+              h4 Images  
   .container.p-4
     h1.text-center.mb-4 Update Product
     .row

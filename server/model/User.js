@@ -3,10 +3,9 @@ const Schema = mongoose.Schema
 
 const ProductSchema = new Schema({
     phone:String,
-    telegram:Number,
-    name:Number,
+    telegram:String,
+    name:String,
     product:Array,
-    img:String,
-    category:String
+    allPrice:Number
 })
 module.exports = mongoose.model('UserProduction', ProductSchema)

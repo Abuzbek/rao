@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  if user.username === "AbuzCoder"
+    .container
+      each n in data
+        ul.list-group
+          li.list-group-item.d-flex.justify-content-between.align-items-center
+            span #{n.username}
+            a(href='/admin/admins/'+n._id).btn.btn-danger DELETE ADMIN
+            
+

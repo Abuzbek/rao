@@ -1,5 +1,7 @@
 var express = require("express");
 const Product = require("../model/Products");
+const Carousel = require("../model/Carousel");
+
 // const product = require('../json/index')
 var router = express.Router();
 let arr = [];
@@ -42,4 +44,13 @@ router.post("/api/edit/:id", (req, res, next) => {
     }
   );
 });
+router.get('/api/carousel', (req,res)=>{
+  Carousel.find({}, (err,data)=>{
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(data)
+    }
+  })
+})
 module.exports = router;
