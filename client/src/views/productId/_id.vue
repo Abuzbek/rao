@@ -200,6 +200,7 @@ export default {
         console.log(id);
         this.id = id;
         this.items = id.comments;
+        this.image = id.image
       });
     let vm = this;
     let imageLoader = document.querySelector("#inputImage");

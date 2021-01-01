@@ -27,11 +27,11 @@
 
       <div class="loading">
         <div class="loader">
-          <div style="--i: 0"></div>
+          <div style="--i: 0" class="first"></div>
           <div style="--i: 1"></div>
           <div style="--i: 2"></div>
           <div style="--i: 3"></div>
-          <div style="--i: 4"></div>
+          <div style="--i: 4" class="first"></div>
         </div>
       </div>
       <style>
@@ -111,7 +111,11 @@
             filter: hue-rotate(0deg);
           }
         }
-
+        @media(max-width:400px){
+          .first{
+            display:none;
+          }
+        }
       </style>
 
     <div id="app"></div>

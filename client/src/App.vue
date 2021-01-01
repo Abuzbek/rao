@@ -54,7 +54,7 @@
       </v-menu>
       <v-badge :content="`${productLenght}`" :color="'#ff9d72'" overlap>
         <v-btn tag="router-link" to="/checkout" text>
-          Aккаунт
+          <span class="first">Aккаунт</span>
           <v-icon right> mdi-cart </v-icon>
         </v-btn>
       </v-badge>
@@ -62,7 +62,7 @@
     <v-navigation-drawer
       v-model="drawer"
       style="z-index: 10"
-      absolute
+      fixed
       temporary
       color="grey lighten-2"
     >
@@ -244,6 +244,9 @@ export default {
 @media (max-width: 400px) {
   .imageApp {
     margin-left: 10px;
+  }
+  .first{
+    display:none;
   }
 }
 </style>
