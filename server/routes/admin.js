@@ -3,6 +3,8 @@ const router = express.Router();
 const Product = require("../model/Products");
 // ============== rasim images fayiliga yuklash jarayoni   ==============
 const upload = require("../helper/file");
+const toDeleteFile = require("../helper/toDelete");
+
 // ============== rasim images fayiliga yuklash jarayoni   ==============
 const Users = require("../model/User");
 
@@ -64,6 +66,7 @@ router.get("/product/edit/:id", eA, (req, res, next) => {
     }
   });
 });
+
 router.get("/product/:id/comments", eA, (req, res, next) => {
   Product.findById(req.params.id, (err, data) => {
     if (err) {
@@ -131,6 +134,7 @@ router.post("/comment/delete/:id", (req, res) => {
         console.log("error" + err);
       } else {
         console.log("success" + data);
+        toDeleteFile(req.body.img);
         res.redirect("/admin/product/edit/" + req.params.id);
         req.flash("info", "comment o'chirildi");
       }
@@ -153,6 +157,7 @@ router.post("/image/delete/:id", (req, res) => {
         console.log("error" + err);
       } else {
         console.log("success" + data);
+        toDeleteFile(req.body.img);
         res.redirect("/admin/product/edit/" + req.params.id);
         req.flash("info", "image o'chirildi");
       }
@@ -169,6 +174,7 @@ router.get("/product/delete/:id", eA, function (req, res, next) {
       console.log(data);
       res.redirect("/admin");
       req.flash("success", "Muaffaqiayatli maxsulot o'chirildi");
+      toDeleteFile(data.img)
     }
   });
 });
@@ -185,10 +191,18 @@ router.post("/product/edit/:id", upload.single("img"), (req, res, next) => {
     img: "",
   };
 
-  // const account = Product.findById(req.params.id);
+  const account = Product.findById(req.params.id, (err, data)=>{
+    if (err) {
+      console.log(err);
+    } else {
+      if (data.img) {
+        toDeleteFile(data.img);
+      }
+    }
+  });
   console.log(req.file);
   if (req.file) {
-    user.img = `./img/${req.file.filename}`;
+    user.img = `/img/${req.file.filename}`;
   }
   const query = { _id: req.params.id };
   Product.updateOne(query, user, (err) => {
@@ -239,6 +253,7 @@ router.get("/carousel/delete/:id", eA, (req, res, next) => {
       console.log(err);
     } else {
       console.log(data);
+      toDeleteFile(data.img)
       res.redirect("/admin/carousel");
       req.flash("success", "Muaffaqiayatli maxsulot o'chirildi");
     }
