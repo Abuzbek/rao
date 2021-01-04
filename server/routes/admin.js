@@ -261,7 +261,53 @@ router.get("/carousel/delete/:id", eA, (req, res, next) => {
 });
 
 //  =================delete carousel ============
+//  =============== METHOD POST EDIT PRODUCT ================
+router.get("/insta", eA, (req, res, next) => {
+  let carousel = Instagram.find({}, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("addInsta", {
+        title: "admin Instagram",
+        data: data,
+      });
+    }
+  });
+});
+// ============= add carousel =============
 
+router.post("/insta", upload.single("img"), (req, res, next) => {
+  let carousel = new Instagram({
+    img: "/img/" + req.file.filename,
+  });
+  carousel.save((err, date) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(date);
+      res.redirect("/admin/insta");
+      req.flash("success", "Carousel Muaffaqiyatli qo'shildi");
+    }
+  });
+});
+
+// ============= add carousel =============
+
+//  =================== delete carousel ==============
+router.get("/insta/delete/:id", eA, (req, res, next) => {
+  Instagram.findByIdAndRemove(req.params.id, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+      toDeleteFile(data.img)
+      res.redirect("/admin/insta");
+      req.flash("success", "Muaffaqiayatli maxsulot o'chirildi");
+    }
+  });
+});
+
+//  =================delete carousel ============
 //  =============== findById production ======================
 
 //  ============ COMMUNITY ===================
