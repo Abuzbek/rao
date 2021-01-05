@@ -1,6 +1,8 @@
 <template>
   <div class="community">
-    <header/>
+    <header
+      :style="`background: url(${background}) no-repeat center center / cover;`"
+    />
     <v-container>
       <v-row>
         <v-col cols="12" sm="10" md="10" class="ma-auto" v-for="(n, i) in post" :key="i">
@@ -23,6 +25,7 @@ import Footer from "../components/footer";
 export default {
   data: () => ({
     post: [],
+    background:'',
   }),
   components:{
     Footer
@@ -35,14 +38,19 @@ export default {
         console.log(post);
         this.post = post;
       });
+    axios
+      .get('http://localhost:3000/api/back/community') 
+      .then((res) => res.data)
+      .then((post) => {
+        console.log(post);
+        post.map(n => this.background = n.img);
+      }); 
   },
 };
 </script>
 <style lang="scss" scoped>
 .community {
   header {
-    background: url("https://mmm.dk/image/crop/3130741/1920/1000.jpg") no-repeat
-      center center / cover;
     height: calc(600px - 65px);
     margin-top: 65px;
     padding-bottom: 0;

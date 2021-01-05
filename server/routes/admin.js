@@ -10,6 +10,9 @@ const Users = require("../model/User");
 
 const Post = require("../model/Posts");
 const Admins = require("../model/Admin");
+const Instagram = require("../model/Instagram");
+const Background = require("../model/Background");
+
 
 const Carousel = require("../model/Carousel");
 
@@ -346,6 +349,7 @@ router.get("/community/:id",eA, (req, res, next) => {
       console.log(err);
     } else {
       console.log(data);
+      toDeleteFile(data.img)
       res.redirect("/admin/community");
     }
   });
@@ -365,12 +369,13 @@ router.post("/community/edit/:id", upload.single("img"), (req, res, next) => {
     if (err) console.log(err);
     else {
       req.flash("success", "POST успешно редактировано");
+      toDeleteFile(data.img)
       res.redirect("/admin/community");
     }
   });
 });
 //  =========== users checkout ============
-router.post("/user_chechout",eA, (req, res, next) => {
+router.post("/user_chechout", (req, res, next) => {
   const user = new Users(req.body);
   user.save((err, data) => {
     if (err) {
@@ -431,5 +436,58 @@ router.get("/admins/:id",eA, (req, res) => {
 });
 
 //   ============ Admins ==============
-
+router.get("/background",eA, (req, res) => {
+  Background.find({}, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("background", {
+        data: data,
+        title: "Page Background",
+      });
+    }
+  });
+});
+router.post("/background",upload.single('img') ,(req, res) => {
+  const back = new Background({
+    img:'/img/'+req.file.filename,
+    name:req.body.name
+  })
+  back.save((err,data)=>{
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+      res.redirect('/admin/background')
+    }
+  })
+});
+router.post("/back/edit/:id", upload.single("img"), (req, res, next) => {
+  let user = {
+    img: '',
+  };
+  console.log(req.file);
+  if (req.file) {
+    user.img = `/img/${req.file.filename}`;
+  }
+  const query = { _id: req.params.id };
+  Background.updateOne(query, user, (err) => {
+    if (err) console.log(err);
+    else {
+      req.flash("success", "Background успешно редактировано");
+      res.redirect("/admin/back");
+    }
+  });
+});
+router.get("/back/:id",eA, (req, res, next) => {
+  Background.findByIdAndRemove(req.params.id, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+      toDeleteFile(data.img)
+      res.redirect("/admin/background");
+    }
+  });
+});
 module.exports = router;

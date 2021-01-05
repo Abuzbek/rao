@@ -52,6 +52,9 @@
           </router-link>
         </v-list>
       </v-menu>
+      <v-btn tag="router-link" to="/community" text>
+          <span class="first">Сообщество</span>
+        </v-btn>
       <v-badge :content="`${productLenght}`" :color="'#ff9d72'" overlap>
         <v-btn tag="router-link" to="/checkout" text>
           <span class="first">Aккаунт</span>
@@ -121,10 +124,6 @@ export default {
             {
               name: "RAON история",
               href: "/history",
-            },
-            {
-              name: "Сообщество",
-              href: "/community",
             },
           ],
         },

@@ -1,6 +1,8 @@
 <template>
   <section class="complete">
-    <div class="top"></div>
+    <div class="top"
+    :style="`background: url(${background}) no-repeat center center / cover;`"
+    ></div>
     <h1 class="py-12 display-2 text-center">Полноценный уход за кожей</h1>
     <v-container class="pt-15">
       <h1 v-if="!products.length" class="my-16 display-3 text-center">
@@ -43,6 +45,7 @@ export default {
     dialog: false,
     productPush: null,
     products: [],
+    background:'',
     paginate: ["products"],
   }),
   components: {
@@ -51,15 +54,6 @@ export default {
     Footer,
   },
   methods: {
-    // pushId(id){
-    //   if(this.clickedId){
-    //     this.$axios.$post('http://localhost:8080/api/product/delete', {id: id})
-    //   }
-    //   else{
-    //     this.$axios.$post('http://localhost:8080/api/product', {id: id})
-    //   }
-    //   this.clickedId = !this.clickedId
-    // }
     selectId(select) {
       console.log(select);
       this.productPush = select;
@@ -82,6 +76,13 @@ export default {
           return n.gender === "woman";
         });
       });
+      axios
+        .get('http://localhost:3000/api/back/women_all')
+        .then((res) => res.data)
+        .then((post) => {
+          console.log(post);
+          post.map(n => this.background = n.img);
+        }); 
   },
 };
 </script>
@@ -90,8 +91,6 @@ export default {
   .top {
     height: 400px;
     width: 100%;
-    background: url("https://www.sacredmomentsmassage.com/wp-content/uploads/2016/01/slide2.jpg")
-      no-repeat center center / cover;
   }
 }
 </style>

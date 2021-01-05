@@ -1,6 +1,8 @@
 <template>
   <section class="complete">
-    <div class="top"></div>
+    <div class="top"
+    :style="`background: url(${background}) no-repeat center center / cover;`"
+    ></div>
     <h1 class="py-12 display-2 text-center">Средства для депиляции</h1>
     <v-container class="pt-15">
       <h1 v-if="!products.length" class="my-16 display-3 text-center">Tовар еще не добавлен</h1>
@@ -21,7 +23,6 @@
     </v-container>
     <Footer/>
   </section>
-  
 </template>
 <script>
 import axios from 'axios'
@@ -32,6 +33,7 @@ export default {
   data:()=>({
     dialog: false,
     productPush: null,
+    background:'',
     products:[]
   }),
   components:{
@@ -66,9 +68,16 @@ export default {
         console.log(card);
           this.products = card.filter((n,i)=> {
           console.log(i)
-          return n.category === 'Средства для депиляции' && n.gender === 'man' ;
+          return n.category === 'Средства для депиляции' && n.gender === 'man';
         });
       });
+      axios
+        .get('http://localhost:3000/api/back/tony_depilatory') 
+        .then((res) => res.data)
+        .then((post) => {
+          console.log(post);
+          post.map(n => this.background = n.img);
+        });
   }
 }
 </script>
@@ -77,7 +86,6 @@ export default {
   .top{
     height: 400px;
     width: 100%;
-    background: url('https://omahalacecleaners.com/wp-content/uploads/2016/01/drycleaning-page.jpg') no-repeat center center / cover;
   }
 }
 </style>

@@ -3,14 +3,14 @@
     <v-container>
       <v-row>
         <v-col cols="12" md="6" >
-          <h2>CS Markazi</h2>
+          <h2>Call center</h2>
           <a class="phones" href="tel:+998909935787">+998 90 993 57 87</a>
           <a class="phones two" href="tel:+998909945787">+998 90 994 57 87</a>
           <p>
-            Ish kunlari: 9:00 dan 18:00 gacha (tushlik vaqti: 12:00 dan 1:00
-            gacha)
+            Рабочие дни: с 9:00 до 18:00 (время обеда: с 12:00 до 1:00.
+             каждый)
             <br />
-            Yopiq: shanba, yakshanba va dam olish kunlari
+            Выходной: суббота, воскресенье и выходные.
           </p>
         </v-col>
         <!-- <v-col style="border-left:1px solid #b6b4b49a;border-right:1px solid #b6b4b49a;" cols="12" md="6" lg="4">
@@ -43,9 +43,9 @@
         </v-col> -->
         <v-col cols="12" md="6"  style="border-left:1px solid #b6b4b49a;">
           <div class="px-6">
-            <h2>Bizning manzil</h2>
+            <h2>Наш адрес</h2>
             <p>
-              Toshkent shahar, Yakkasaroy tumani, Shota Rustavelli ko'chasi 34/33
+              Город Ташкент, Яккасарайский район, улица Шота Руставели 34/33
             </p>
             <div class="d-flex align-center">
               <v-btn v-for="(n, i) in icons" :key="i" tag="a" :href="n.href" target="_blank" class="mx-2" fab dark small color="#2a2a2a">

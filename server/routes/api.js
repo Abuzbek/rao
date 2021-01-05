@@ -1,9 +1,12 @@
-var express = require("express");
+const express = require("express");
 const Product = require("../model/Products");
 const Carousel = require("../model/Carousel");
+const Instagram = require("../model/Instagram");
+const Background = require("../model/Background");
+
 
 // const product = require('../json/index')
-var router = express.Router();
+const router = express.Router();
 let arr = [];
 /* GET home page. */
 router.get("/api", function (req, res, next) {
@@ -52,5 +55,40 @@ router.get('/api/carousel', (req,res)=>{
       res.json(data)
     }
   })
+})
+router.get('/api/insta', (req,res)=>{
+  Instagram.find({}, (err,data)=>{
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(data)
+    }
+  })
+})
+router.get('/api/limit', (req,res)=>{
+  Product.find({}, (err,data)=>{
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(data.reverse())
+    }
+  })
+})
+router.get('/api/back/:id', (req,res)=>{
+  Background.aggregate([
+    {
+      $match:{
+        name : req.params.id
+      }
+    }
+  ],
+    (err,data)=>{
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(data)
+      }
+    }
+  )
 })
 module.exports = router;

@@ -1,9 +1,9 @@
 <template>
   <section class="complete">
     <div class="top"
-      :style="`background: url(${background}) no-repeat center center / cover;`"
+    :style="`background: url(${background}) no-repeat center center / cover;`"
     ></div>
-    <h1 class="py-12 display-2 text-center">Декоративная Косметика</h1>
+    <h1 class="py-12 display-2 text-center">Полноценный уход за кожей</h1>
     <v-container class="pt-15">
       <h1 v-if="!products.length" class="my-16 display-3 text-center">Tовар еще не добавлен</h1>
       <Dialog v-bind="productPush" v-if="dialog" @dialogFalse="dialogFalse()" />
@@ -40,15 +40,6 @@ export default {
     Card,Dialog,Footer
   },
   methods: {
-    // pushId(id){
-    //   if(this.clickedId){
-    //     this.$axios.$post('http://localhost:8080/api/product/delete', {id: id})
-    //   }
-    //   else{
-    //     this.$axios.$post('http://localhost:8080/api/product', {id: id})
-    //   }
-    //   this.clickedId = !this.clickedId
-    // }
     selectId(select) {
       console.log(select);
       this.productPush = select;
@@ -68,16 +59,16 @@ export default {
         console.log(card);
           this.products = card.filter((n,i)=> {
           console.log(i)
-          return n.category === 'Декоративная Косметика' && n.gender === 'man' ;
+          return n.category === 'НАБОР' && n.gender === 'woman' ;
         });
       });
       axios
-        .get('http://localhost:3000/api/back/tony_cosmetic') 
+        .get('http://localhost:3000/api/back/women_set') 
         .then((res) => res.data)
         .then((post) => {
           console.log(post);
           post.map(n => this.background = n.img);
-        });
+        }); 
   }
 }
 </script>

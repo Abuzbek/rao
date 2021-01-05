@@ -98,6 +98,16 @@ const routes = [
     name:'productId',
     component: () => import(/* webpackChunkName: "about" */ '../views/productId/_id.vue')
   },
+  {
+    path:'/women/set',
+    name:'productId',
+    component: () => import(/* webpackChunkName: "about" */ '../views/woman/set.vue')
+  },
+  {
+    path:'/man/set',
+    name:'productId',
+    component: () => import(/* webpackChunkName: "about" */ '../views/man/set.vue')
+  },
 ]
 
 const router = new VueRouter({

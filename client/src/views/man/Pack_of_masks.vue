@@ -1,9 +1,11 @@
 <template>
   <section class="complete">
-    <div class="top"></div>
+    <div class="top"
+    :style="`background: url(${background}) no-repeat center center / cover;`"
+    ></div>
     <h1 class="py-12 display-2 text-center">Пакет масок</h1>
     <v-container class="pt-15">
-      <h1 v-if="!products.length" class="my-10 display-3 text-center">Tовар еще не добавлен</h1>
+      <h1 v-if="!products.length" class="my-16 display-3 text-center">Tовар еще не добавлен</h1>
       <Dialog v-bind="productPush" v-if="dialog" @dialogFalse="dialogFalse()" />
       <v-row class="justify-center">
         <v-col
@@ -31,6 +33,7 @@ export default {
   data:()=>({
     dialog: false,
     productPush: null,
+    background:'',
     products:[]
   }),
   components:{
@@ -68,6 +71,13 @@ export default {
           return n.category === 'Пакет масок' && n.gender === 'man' ;
         });
       });
+      axios
+        .get('http://localhost:3000/api/back/tony_mask') 
+        .then((res) => res.data)
+        .then((post) => {
+          console.log(post);
+          post.map(n => this.background = n.img);
+        }); 
   }
 }
 </script>
@@ -76,7 +86,6 @@ export default {
   .top{
     height: 400px;
     width: 100%;
-    background: url('https://omahalacecleaners.com/wp-content/uploads/2016/01/drycleaning-page.jpg') no-repeat center center / cover;
   }
 }
 </style>

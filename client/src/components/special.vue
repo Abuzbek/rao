@@ -8,12 +8,12 @@
           </div>
         </v-col>
         <v-col cols="12" md="6" lg="6" class="py-0 ma-auto">
-          <v-card class="text-center cardHover" elevation="0" max-width="100%">
+          <v-card @click="$router.push('/product/'+productfirst._id)" class="text-center cardHover" elevation="0" max-width="100%">
             <v-row>
               <v-col cols="12" sm="6" class="pa-0 pl-3">
                 <v-hover v-slot="{ hover }">
                   <v-img
-                    src="https://i.ibb.co/8mwVm23/Lacafone-Tea-Tree-Poduim.jpg"
+                    :src="productfirst.img"
                     height="auto"
                     v-ripple
                   >
@@ -35,13 +35,16 @@
                 class="py-6 d-flex justify-center align-center flex-column"
               >
                 <v-card-title class="justify-center">
-                  Top western road trips
+                  {{productfirst.name}}
                 </v-card-title>
                 <v-card-subtitle>
-                  1,000 miles of wonder
+                  {{productfirst.category}}
                 </v-card-subtitle>
-                <div class="textBig">
-                  1350 сўм
+                <div class="textBig" v-if="productfirst.sale">
+                  {{productfirst.sale}}
+                </div>
+                <div class="textBig" v-else>
+                  {{productfirst.price}}
                 </div>
                 <v-card-actions class="d-flex justify-center align-center">
                   <v-btn
@@ -56,7 +59,7 @@
               </v-col>
             </v-row>
           </v-card>
-          <v-card elevation="0" class="text-center cardHover" max-width="100%">
+          <v-card @click="$router.push('/product/'+productsecond._id)" elevation="0" class="text-center cardHover" max-width="100%">
             <v-row>
               <v-col
                 cols="12"
@@ -64,13 +67,16 @@
                 class="py-6 d-flex justify-center align-center flex-column"
               >
                 <v-card-title class="justify-center ">
-                  Top western road trips
+                  {{productsecond.name}}
                 </v-card-title>
                 <v-card-subtitle>
-                  1,000 miles of wonder
+                  {{productsecond.category}}
                 </v-card-subtitle>
-                <div class="textBig">
-                  1350 сўм
+               <div class="textBig" v-if="productsecond.sale">
+                  {{productsecond.sale}}
+                </div>
+                <div class="textBig" v-else>
+                  {{productsecond.price}}
                 </div>
                 <v-card-actions class="d-flex justify-center align-center">
                   <v-btn
@@ -86,7 +92,7 @@
               <v-col cols="12" sm="6" class="pa-0 pr-3">
                 <v-hover v-slot="{ hover }">
                   <v-img
-                    src="https://i.ibb.co/8mwVm23/Lacafone-Tea-Tree-Poduim.jpg"
+                    :src="productsecond.img"
                     height="auto"
                     v-ripple
                   >
@@ -110,7 +116,22 @@
   </div>
 </template>
 <script>
-export default {};
+import axios from 'axios'
+export default {
+  data:()=>({
+    productfirst:'',
+    productsecond:''
+  }),
+  mounted(){
+    axios
+      .get('http://localhost:3000/api/limit')
+      .then(res => res.data)
+      .then(product => {
+        this.productfirst = product[1]
+        this.productsecond = product[2]
+      })
+  }
+};
 </script>
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap");

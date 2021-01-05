@@ -1,6 +1,8 @@
 <template>
   <section class="complete">
-    <div class="top"></div>
+    <div class="top"
+    :style="`background: url(${background}) no-repeat center center / cover;`"
+    ></div>
     <h1 class="py-12 display-2 text-center">Уход за волосами</h1>
     <v-container class="pt-15">
       <h1 v-if="!products.length" class="my-16 display-3 text-center">Tовар еще не добавлен</h1>
@@ -31,6 +33,7 @@ export default {
   data:()=>({
     dialog: false,
     productPush: null,
+    background:'',
     products:[]
   }),
   components:{
@@ -68,6 +71,13 @@ export default {
           return n.category === 'Уход за волосами' && n.gender === 'woman' ;
         });
       });
+      axios
+        .get('http://localhost:3000/api/back/women_hair') 
+        .then((res) => res.data)
+        .then((post) => {
+          console.log(post);
+          post.map(n => this.background = n.img);
+        }); 
   }
 }
 </script>
@@ -76,7 +86,6 @@ export default {
   .top{
     height: 400px;
     width: 100%;
-    background: url('https://images.ua.prom.st/1189064873_1189064873.jpg') no-repeat center center / cover;
   }
 }
 </style>

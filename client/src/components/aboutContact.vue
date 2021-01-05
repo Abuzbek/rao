@@ -27,8 +27,8 @@ export default {
         icon: "map-marker",
         color: "#ffd66b",
         heading: "Bizning manzilimiz",
-        title: "Shota Rustavelli ko'chasi 34/33",
-        href:"https://www.google.com/maps/place/41%C2%B017'25.5%22N+69%C2%B015'33.0%22E/@41.290409,69.259167,16z/data=!4m5!3m4!1s0x0:0x0!8m2!3d41.290409!4d69.259167"
+        title: "",
+        href:"#!"
       },
       {
         icon: "phone",

@@ -2,10 +2,26 @@
   <div>
     <header>
       <img
-        src="https://logyka.net/assets/templates/img/1455/SEOLogyka.jpg"
+        :src="background"
         alt=""
       />
     </header>
+    <v-container>
+      <h2 class="display-4 text-center font-weight-bold">RAON</h2>
+        <div class="d-flex justify-center align-center my-7">
+          <v-btn
+            color="black"
+            style="border-radius:0px !important;outline:1px solid white;outline-offset:-4px;"
+            large
+            dark
+          >
+            RAON бренди
+          </v-btn>
+          <v-btn color="white" style="border-radius:0px !important;outline:1px solid black;outline-offset:-4px;" @click="$router.push('/history')"  large>
+            RAON история
+          </v-btn>
+        </div>
+    </v-container>
     <section>
       <h1>
         RAON
@@ -17,10 +33,21 @@
 <script>
 import Footer from '../../components/footer'
 import img from "../../assets/RAON.jpg";
+import axios from 'axios'
 export default {
   data: () => ({
     img,
+    background:''
   }),
+  mounted() {
+    axios
+      .get('http://localhost:3000/api/back/raon_brend')
+      .then((res) => res.data)
+      .then((post) => {
+        console.log(post);
+        post.map(n => this.background = n.img);
+      }); 
+  },
   components:{
     Footer
   }
