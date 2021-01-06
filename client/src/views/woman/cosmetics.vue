@@ -76,7 +76,7 @@ export default {
         .then((res) => res.data)
         .then((post) => {
           console.log(post);
-          post.map(n => this.background = n.img);
+          post.map(n => console.log(n.img));
         });
   }
 }
