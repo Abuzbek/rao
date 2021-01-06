@@ -27,19 +27,20 @@ block content
             .card-body
               .card-title #{n.name}
               a(href="/admin/back/"+n._id).btn.btn-danger.my-3 DELETE
-              div( class="accordion" id="accordionExample")
+              div( class="accordion" id="accordionExample"+n._id)
                 div(class="accordion-item")
-                  h2#headingOne.accordion-header
+                  h2.accordion-header(id="headingOne"+n._id)
                     button.accordion-button(
                       type='button'
                        data-bs-toggle='collapse'
-                       data-bs-target='#collapseOne'
+                       data-bs-target='#collapseOne'+n._id
                        aria-expanded='true'
-                       aria-controls='collapseOne')
+                       aria-controls='collapseOne'+n._id)
                       | UPDATE POST
-                  #collapseOne.accordion-collapse.collapse(
-                    aria-labelledby='headingOne'
-                    data-bs-parent='#accordionExample'
+                  .accordion-collapse.collapse(
+                    id="collapseOne"+n._id
+                    aria-labelledby='headingOne'+n._id
+                    data-bs-parent='#accordionExample'+n._id
                     )
                     .accordion-body
                       form(

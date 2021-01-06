@@ -98,11 +98,10 @@ router.get('/product/:id/images', eA,(req,res)=>{
 
 router.post('/product/image/:id',upload.single("img"), (req,res)=>{
   const query = { _id: req.params.id };
-  console.log(req.body);
   Product.updateOne(
     query,
     {
-      $push:{image:{img:'/img/'+req.file.filename}}
+      $push:{image:{ img: '/img/' + req.file.filename }}
     },
     (err, data) => {
       if (err) {
@@ -475,7 +474,7 @@ router.post("/back/edit/:id", upload.single("img"), (req, res, next) => {
     if (err) console.log(err);
     else {
       req.flash("success", "Background успешно редактировано");
-      res.redirect("/admin/back");
+      res.redirect("/admin/background");
     }
   });
 });
