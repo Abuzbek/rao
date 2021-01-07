@@ -36,19 +36,21 @@ block content
               .card-title #{n.name}
               p.card-text #{n.description}
               a(href="/admin/community/"+n._id).btn.btn-danger.my-3 DELETE
-              div( class="accordion" id="accordionExample")
+              div( class="accordion" id="accordionExample"+n._id)
                 div(class="accordion-item")
-                  h2#headingOne.accordion-header
+                  h2.accordion-header
                     button.accordion-button(
+                      id="headingOne"+n._id
                       type='button'
                        data-bs-toggle='collapse'
-                       data-bs-target='#collapseOne'
+                       data-bs-target='#collapseOne'+n._id
                        aria-expanded='true'
-                       aria-controls='collapseOne')
+                       aria-controls='collapseOne'+n._id)
                       | UPDATE POST
-                  #collapseOne.accordion-collapse.collapse(
-                    aria-labelledby='headingOne'
-                    data-bs-parent='#accordionExample'
+                  .accordion-collapse.collapse(
+                    id="collapseOne"+n._id
+                    aria-labelledby='headingOne'+n._id
+                    data-bs-parent='#accordionExample'+n._id
                     )
                     .accordion-body
                       form(
@@ -63,8 +65,8 @@ block content
                               placeholder="POST TITLE"
                               ).mb-4.form-control
                           .col-md-12
-                            input(type="file" name="img" id="inputImages")
-                            label(for="inputImages" id="labelFiles")
+                            input(type="file" name="img" id="inputImages"+n._id).input_file
+                            label(for="inputImages"+n._id id="labelFiles").input_label
                               span Photo Upload
                           .col-12
                             label(for="floatingTextarea" class="form-label") Description
