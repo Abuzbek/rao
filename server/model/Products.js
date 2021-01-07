@@ -11,5 +11,7 @@ const ProductSchema = new Schema({
     category:String,
     comments:Array,
     image:Array,
+    new:String,
+    special:String
 })
-module.exports = mongoose.model('user', ProductSchema)
+module.exports = mongoose.model('product', ProductSchema)

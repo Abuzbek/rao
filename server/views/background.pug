@@ -48,8 +48,8 @@ block content
                         method="post", enctype="multipart/form-data")
                         .row
                           .col-md-12
-                            input(type="file" name="img" id="inputImages")
-                            label(for="inputImages" id="labelFiles")
+                            label(for="inputImages"+i id="labelFiles"+i).input_label
                               span Photo Upload
+                            input(type="file" name="img" id="inputImages"+i).input_file
                           div( class="d-grid gap-2 col-6 mx-auto my-4")
                             button( class="btn btn-primary" type="submit" ) Send 

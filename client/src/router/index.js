@@ -100,13 +100,23 @@ const routes = [
   },
   {
     path:'/women/set',
-    name:'productId',
+    name:'set',
     component: () => import(/* webpackChunkName: "about" */ '../views/woman/set.vue')
   },
   {
     path:'/man/set',
-    name:'productId',
+    name:'set',
     component: () => import(/* webpackChunkName: "about" */ '../views/man/set.vue')
+  },
+  {
+    path:'/women/clearing',
+    name:'clearing',
+    component: () => import(/* webpackChunkName: "about" */ '../views/woman/clearing.vue')
+  },
+  {
+    path:'/man/clearing',
+    name:'clearing',
+    component: () => import(/* webpackChunkName: "about" */ '../views/man/clearing.vue')
   },
 ]
 

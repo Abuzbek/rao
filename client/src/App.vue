@@ -147,6 +147,10 @@ export default {
               href: "/women/hair_care",
             },
             {
+              name: "Очищение",
+              href: "/women/clearing",
+            },
+            {
               name: "Маска / Пакет",
               href: "/women/pack_of_masks",
             },
@@ -178,6 +182,10 @@ export default {
             {
               name: "Уход за волосами",
               href: "/man/hair_care",
+            },
+            {
+              name: "Очищение",
+              href: "/women/clearing",
             },
             {
               name: "Пакет масок",

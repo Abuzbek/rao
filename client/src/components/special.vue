@@ -120,15 +120,21 @@ import axios from 'axios'
 export default {
   data:()=>({
     productfirst:'',
-    productsecond:''
+    productsecond:'',
+    products:[]
   }),
   mounted(){
     axios
       .get('http://localhost:3000/api/limit')
       .then(res => res.data)
       .then(product => {
-        this.productfirst = product[1]
-        this.productsecond = product[2]
+        this.products = product.filter((n,i)=> {
+          console.log(i)
+          return n.special === 'on';
+        });
+        this.productfirst = this.products[0]
+        this.productsecond = this.products[1]
+        console.log(this.productfirst);
       })
   }
 };

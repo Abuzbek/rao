@@ -1,3 +1,3 @@
 module.exports = {
-  db: 'mongodb+srv://Movies:mannon2710@cluster0.wswse.mongodb.net/test'
+  db: 'mongodb+srv://KoreaRaon:yshub2020@cluster0.jtu4m.mongodb.net/test'
 }

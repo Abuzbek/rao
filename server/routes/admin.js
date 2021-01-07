@@ -31,6 +31,8 @@ router.post("/", upload.single("img"), (req, res, next) => {
     description: req.body.description,
     category: req.body.category,
     gender: req.body.gender,
+    new: req.body.new,
+    special: req.body.special,
     img: "/img/" + req.file.filename,
   });
   product.save((err, data) => {
@@ -190,6 +192,8 @@ router.post("/product/edit/:id", upload.single("img"), (req, res, next) => {
     description: req.body.description,
     category: req.body.category,
     gender: req.body.gender,
+    new: req.body.new,
+    special: req.body.special,
     img: "",
   };
 
@@ -288,7 +292,7 @@ router.post("/insta", upload.single("img"), (req, res, next) => {
     } else {
       console.log(date);
       res.redirect("/admin/insta");
-      req.flash("success", "Carousel Muaffaqiyatli qo'shildi");
+      req.flash("success", "Product Muaffaqiyatli qo'shildi");
     }
   });
 });

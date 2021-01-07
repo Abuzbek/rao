@@ -6,7 +6,6 @@ block content
       img(src=product.img, alt="")
     .box-title
       h3= product.name
-      p= product.description 
       if product.sale
         p Price :  
           span.textLine #{product.price} so'm 
@@ -40,30 +39,85 @@ block content
             .col-md-6.mb-4
               label(for="sale").form-label Product category
               select( class="form-select" name="category" value=product.category)
-                option( value="Декоративная Косметика" ) Декоративная Косметика
-                option( value="Средства для депиляции")  Средства для депиляции
-                option( value="Уход за волосами") Уход за волосами
-                option( value="Пакет масок") Пакет масок
-                option( value="Полноценный уход за кожей") Полноценный уход за кожей
-                option( value="НАБОР") НАБОР
+                if product.category === 'Декоративная Косметика'
+                  option( value="Декоративная Косметика" selected) Декоративная Косметика
+                else
+                  option( value="Декоративная Косметика" ) Декоративная Косметика  
+                if product.category === 'Средства для депиляции'  
+                  option( value="Средства для депиляции" selected)  Средства для депиляции
+                else
+                  option( value="Средства для депиляции" ) Средства для депиляции 
+                if product.category === 'Очищение'   
+                  option( value="Очищение" selected) Очищение
+                else
+                  option( value="Очищение" ) Очищение  
+                if product.category === 'Уход за волосами'   
+                  option( value="Уход за волосами" selected) Уход за волосами
+                else
+                  option( value="Уход за волосами" ) Уход за волосами 
+                if product.category === 'Пакет масок'   
+                  option( value="Пакет масок" selected) Пакет масок
+                else
+                  option( value="Пакет масок" ) Пакет масок 
+                if product.category === 'Полноценный уход за кожей'     
+                  option( value="Полноценный уход за кожей" selected) Полноценный уход за кожей
+                else
+                  option( value="Полноценный уход за кожей" ) Полноценный уход за кожей 
+                if product.category === 'НАБОР'     
+                  option( value="НАБОР" selected) НАБОР
+                else
+                  option( value="НАБОР" ) НАБОР   
+            .col-md-6.mb-4(style="border:1px solid #3a3a3a;")
+              if product.new == 'on'
+                .form-check
+                  input.form-check-input( type="checkbox" id="check" name="new" checked)  
+                  label(for="check").form-check-label Product New
+              else 
+                .form-check
+                  input.form-check-input( type="checkbox" id="check" name="new")  
+                  label(for="check").form-check-label Product New    
+            .col-md-6.mb-4(style="border:1px solid #3a3a3a;")
+             if product.special == 'on'
+              .form-check
+                input.form-check-input( type="checkbox" id="special" name="special" checked)  
+                label(for="special").form-check-label Product Special 
+             else
+              .form-check
+                input.form-check-input( type="checkbox" id="special" name="special")  
+                label(for="special").form-check-label Product Special         
             .col-md-6.mb-4
               p Selection Client
-              .form-check
-                input#flexRadioDefault1.form-check-input(type='radio' name='flexRadioDefault' value="women")
-                label.form-check-label(for='flexRadioDefault1')
-                  | Women
-              .form-check
-                input#flexRadioDefault2.form-check-input(type='radio' name='flexRadioDefault' value="man")
-                label.form-check-label(for='flexRadioDefault2')
-                  | Tony Moly
+              if product.gender === "woman"
+                .form-check
+                  input#flexRadioDefault1.form-check-input(type='radio' name='gender'  value="woman" checked)
+                  label.form-check-label(for='flexRadioDefault1')
+                    | Women
+              else
+                .form-check
+                  input#flexRadioDefault1.form-check-input(type='radio' name='gender'  value="woman")
+                  label.form-check-label(for='flexRadioDefault1')
+                    | Women      
+              if product.gender === "man"
+                .form-check
+                  input#flexRadioDefault2.form-check-input(type='radio' name='gender'  value="man" checked)
+                  label.form-check-label(for='flexRadioDefault2')
+                    | Tony Moly
+              else
+                .form-check
+                  input#flexRadioDefault1.form-check-input(type='radio' name='gender'  value="man")
+                  label.form-check-label(for='flexRadioDefault1')
+                    | Tony Moly      
             .col-md-6.mb-4
               p Upload File
-              input(type="file" name="img" id="inputImage")
+              input(type="file" name="img" id="inputImage" value=product.img)
               label(for="inputImage" id="labelFile")
                 span Photo Upload
             .col-12.mb-4
               label(for="floatingTextarea") Description
-              textarea( placeholder=product.description class="form-control" id="floatingTextarea" style="min-height:250px; resize:none;")
+              textarea( placeholder=product.description class="form-control" id="floatingTextarea" style="min-height:250px;"
+              name="description"
+              )
+                | #{product.description}
             div( class="d-grid gap-2 col-6 mx-auto my-4")
               button( class="btn btn-primary" type="submit" ) Send
               

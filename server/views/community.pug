@@ -69,11 +69,11 @@ block content
                           .col-12
                             label(for="floatingTextarea" class="form-label") Description
                             textarea(
-                              value=n.description 
                               id="floatingTextarea"
                               name="description",
                               placeholder="POST Description"
                               style="resize:none;min-height:250px"
                               class="form-control")  
+                              | #{n.description }
                           div( class="d-grid gap-2 col-6 mx-auto my-4")
                             button( class="btn btn-primary" type="submit" ) Send 

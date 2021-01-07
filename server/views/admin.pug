@@ -23,9 +23,18 @@ block content
                   option( value="Декоративная Косметика" ) Декоративная Косметика
                   option( value="Средства для депиляции")  Средства для депиляции
                   option( value="Уход за волосами") Уход за волосами
+                  option( value="Очищение") Очищение
                   option( value="Пакет масок") Пакет масок
                   option( value="Полноценный уход за кожей") Полноценный уход за кожей
                   option( value="НАБОР") НАБОР
+              .col-md-6.mb-4(style="border:1px solid #3a3a3a;")
+                .form-check
+                  input.form-check-input( type="checkbox" id="check" name="new")  
+                  label(for="check").form-check-label Product New
+              .col-md-6.mb-4(style="border:1px solid #3a3a3a;")
+                .form-check
+                  input.form-check-input( type="checkbox" id="special" name="special")  
+                  label(for="special").form-check-label Product Special    
               .col-md-6.mb-4
                 p Selection Client
                 .form-check
@@ -43,11 +52,12 @@ block content
                   span Photo Upload
               .col-12.mb-4
                 label(for="floatingTextarea") Description
-                textarea(  class="form-control" id="floatingTextarea" style="min-height:250px; resize:none;")
+                textarea(  class="form-control" id="floatingTextarea" style="min-height:250px; resize:none;"
+                name="description"
+                )
               div( class="d-grid gap-2 col-6 mx-auto my-4")
                 button( class="btn btn-primary" type="submit" ) Send
   else 
-    h1 
+    h1
       | SIZ ADMIN EMASSIZ
       a(href="/").mx-3 iltimos chiqib keting
-                  
