@@ -10,6 +10,11 @@
         </a>
         <v-list-item-subtitle v-html="description" class="subtitle-1 subtitle_card">
         </v-list-item-subtitle>
+        <div class="d-flex justify-end align-center mt-4">
+          <span>
+            {{moment}}
+          </span>
+        </div>
       </v-list-item-content>
     </v-list-item>
   </v-card>
@@ -21,6 +26,7 @@ export default {
     img: String,
     name: String,
     description: String,
+    moment:String,
     _id:String
   },
 };

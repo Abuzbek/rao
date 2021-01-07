@@ -4,7 +4,7 @@ const Product = require("../model/Products");
 // ============== rasim images fayiliga yuklash jarayoni   ==============
 const upload = require("../helper/file");
 const toDeleteFile = require("../helper/toDelete");
-
+const moment = require("moment");
 // ============== rasim images fayiliga yuklash jarayoni   ==============
 const Users = require("../model/User");
 
@@ -334,6 +334,7 @@ router.post("/community", upload.single("img"), (req, res, next) => {
   const post = new Post({
     name: req.body.name,
     description: req.body.description,
+    moment: moment().format('LLL'),
     img: "/img/" + req.file.filename,
   });
   post.save((err, data) => {

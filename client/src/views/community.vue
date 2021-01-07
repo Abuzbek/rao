@@ -44,7 +44,7 @@ export default {
       .then((res) => res.data)
       .then((post) => {
         console.log(post);
-        this.post = post;
+        this.post = post.reverse();
       });
     axios
       .get('http://localhost:3000/api/back/community') 
