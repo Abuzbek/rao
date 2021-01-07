@@ -65,7 +65,7 @@ export default {
         });
       });
       axios
-        .get('http://localhost:3000/api/back/tony_depilatory') 
+        .get('http://localhost:3000/api/back/tony_sredstva_dlya_depilyasii') 
         .then((res) => res.data)
         .then((post) => {
           console.log(post);

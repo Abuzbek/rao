@@ -56,7 +56,7 @@ export default {
         });
       });
       axios
-        .get('http://localhost:3000/api/back/tony_clearing') 
+        .get('http://localhost:3000/api/back/tony_ochishenie') 
         .then((res) => res.data)
         .then((post) => {
           console.log(post);

@@ -65,7 +65,7 @@ export default {
         });
       });
       axios
-        .get('http://localhost:3000/api/back/women_cosmetic') 
+        .get('http://localhost:3000/api/back/women_Dekorativnaya_Kosmetika') 
         .then((res) => res.data)
         .then((post) => {
           console.log(post);

@@ -26,28 +26,28 @@ export default {
       {
         icon: "map-marker",
         color: "#ffd66b",
-        heading: "Bizning manzilimiz",
-        title: "",
+        heading: "Наш адрес",
+        title: "Бесплатная доставка при покупке на сумму свыше 600 000 сумов.",
         href:"#!"
       },
       {
         icon: "phone",
         color: "#4267B2",
-        heading: "Telefon raqamlarimiz",
+        heading: "Наши телефоны",
         title: "+998 90 993 57 87",
         href:"tel:+998909935787"
       },
       {
         icon: "instagram",
         color: "#C13584",
-        heading: "Instagram manzilimiz",
+        heading: "Наш адрес в Instagram",
         title: "@raon_koreacosmetic",
         href:"https://instagram.com/raon_koreacosmetic"
       },
       {
         icon: "telegram",
         color: "#0088cc",
-        heading: "Telegram manzilimiz",
+        heading: "Наш адрес в Telegram",
         title: "@RaonKorea",
         href:"https://t.me/RaonKorea"
       },

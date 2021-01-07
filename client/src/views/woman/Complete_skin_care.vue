@@ -65,7 +65,7 @@ export default {
         });
       });
       axios
-        .get('http://localhost:3000/api/back/women_skin') 
+        .get('http://localhost:3000/api/back/women_polnosenniy_uxod_za_kojey') 
         .then((res) => res.data)
         .then((post) => {
           console.log(post);

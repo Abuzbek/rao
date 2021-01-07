@@ -65,7 +65,7 @@ export default {
         });
       });
       axios
-        .get('http://localhost:3000/api/back/women_depilatory') 
+        .get('http://localhost:3000/api/back/women_sredstva_dlya_depilyasii') 
         .then((res) => res.data)
         .then((post) => {
           console.log(post);

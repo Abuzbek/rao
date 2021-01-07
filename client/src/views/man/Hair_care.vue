@@ -65,7 +65,7 @@ export default {
         });
       });
       axios
-        .get('http://localhost:3000/api/back/tony_hair') 
+        .get('http://localhost:3000/api/back/tony_Uxod_za_volosami') 
         .then((res) => res.data)
         .then((post) => {
           console.log(post);

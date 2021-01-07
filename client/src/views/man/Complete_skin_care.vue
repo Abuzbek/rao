@@ -64,7 +64,7 @@ export default {
         });
       });
       axios
-        .get('http://localhost:3000/api/back/tony_skin')
+        .get('http://localhost:3000/api/back/tony_polnosenniy_uxod_za_kojey')
         .then((res) => res.data)
         .then((post) => {
           console.log(post);
