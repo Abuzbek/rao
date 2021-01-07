@@ -26,6 +26,11 @@
       <h1>
         RAON
       </h1>
+      <h2 class="text-center mb-6">
+        На чистом корейском языке это «весело».
+        <br>
+        Приятная красота. RAON
+      </h2>
     </section>
     <Footer/>
   </div>

@@ -48,16 +48,8 @@ export default {
     //     this.$axios.$post('http://localhost:8080/api/product', {id: id})
     //   }
     //   this.clickedId = !this.clickedId
-    // }
-    selectId(select) {
-      console.log(select);
-      this.productPush = select;
-      this.dialog = !this.dialog;
-      document.querySelector("html").style.overflow = "hidden";
-    },
-    dialogFalse(select) {
-      this.dialog = select;
-      document.querySelector("html").style.overflow = "auto";
+   selectId(select) {
+      this.$router.push(`/product/${select._id}`)
     },
   },
   async mounted() {

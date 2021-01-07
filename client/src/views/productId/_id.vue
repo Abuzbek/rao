@@ -85,7 +85,7 @@
               </v-col>
               <v-col cols="12" md="4" sm="6">
                 <input type="file" name="" id="inputImage" />
-                <label for="inputImage" id="labelFile">
+                <label class="mb-2" for="inputImage" id="labelFile">
                   <v-icon>
                     mdi-camera
                   </v-icon>
@@ -93,6 +93,15 @@
                     Изображение
                   </span>
                 </label>
+                <div class="v-text-field__details">
+                  <div class="v-messages theme--light error--text" role="alert">
+                    <div class="v-messages__wrapper">
+                      <div class="v-messages__message">
+                        Пожалуйста, имейте менее 100 КБ фотографий!
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </v-col>
               <v-col cols="12" md="4" sm="6">
                 <v-text-field
@@ -200,7 +209,7 @@ export default {
         console.log(id);
         this.id = id;
         this.items = id.comments;
-        this.image = id.image
+        this.image = id.image;
       });
     let vm = this;
     let imageLoader = document.querySelector("#inputImage");
@@ -211,10 +220,7 @@ export default {
       reader.onload = function(e) {
         if (filetype.indexOf("image") > -1) {
           vm.img = e.target.result;
-        } else if (filetype.indexOf("video") > -1) {
-          document.querySelector("video").src = reader.result;
-        } else if (filetype.indexOf("audio") > -1) {
-          document.querySelector("audio").src = reader.result;
+          console.log(vm.img);
         }
       };
       reader.readAsDataURL(e.target.files[0]);

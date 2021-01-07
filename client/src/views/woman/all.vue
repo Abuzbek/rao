@@ -55,15 +55,9 @@ export default {
   },
   methods: {
     selectId(select) {
-      console.log(select);
-      this.productPush = select;
-      this.dialog = !this.dialog;
-      document.querySelector("html").style.overflow = "hidden";
+      this.$router.push(`/product/${select._id}`)
     },
-    dialogFalse(select) {
-      this.dialog = select;
-      document.querySelector("html").style.overflow = "auto";
-    },
+    
   },
   async mounted() {
     await axios
