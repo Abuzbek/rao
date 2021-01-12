@@ -24,9 +24,9 @@ export default {
   data: () => ({
     icon_set: [
       {
-        icon: "map-marker",
+        icon: "map-currency-usd",
         color: "#ffd66b",
-        heading: "Наш адрес",
+        heading: "Стоимость доставки",
         title: "Бесплатная доставка при покупке на сумму свыше 600 000 сумов.",
         href:"#!"
       },

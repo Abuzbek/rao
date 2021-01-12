@@ -104,7 +104,11 @@ db.once('open', function () {
 
 
 
-app.use(cors())
+app.use(cors({
+	origin: 'http://korearaon.uz',
+	optionsSuccessStatus: 200
+
+}))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

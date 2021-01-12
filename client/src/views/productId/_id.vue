@@ -203,7 +203,7 @@ export default {
   },
   async mounted() {
     await axios
-      .get(`http://localhost:3000/api/product/${this.getParams}`)
+      .get(`http://korearaon.uz/api/product/${this.getParams}`)
       .then((res) => res.data)
       .then((id) => {
         console.log(id);
@@ -239,7 +239,7 @@ export default {
       };
     },
     addComment() {
-      axios.post(`http://localhost:3000/api/edit/${this.getParams}`, {
+      axios.post(`http://korearaon.uz/api/edit/${this.getParams}`, {
         name: this.firstname,
         comment: this.commentary,
         email: this.email,

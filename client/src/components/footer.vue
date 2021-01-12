@@ -7,10 +7,7 @@
           <a class="phones" href="tel:+998909935787">+998 90 993 57 87</a>
           <a class="phones two" href="tel:+998909945787">+998 90 994 57 87</a>
           <p>
-            Рабочие дни: с 9:00 до 18:00 (время обеда: с 12:00 до 1:00.
-             каждый)
-            <br />
-            Выходной: суббота, воскресенье и выходные.
+            Рабочее время: с 9:00 до 18:00 (время обеда: с 12:00 до 13:00) <br> Выходной день: воскресенье
           </p>
         </v-col>
         <!-- <v-col style="border-left:1px solid #b6b4b49a;border-right:1px solid #b6b4b49a;" cols="12" md="6" lg="4">
@@ -69,7 +66,7 @@ export default {
     icons:[
       {
         icon:'mdi-map-marker',
-        href:"https://fb.com"
+        href:"#!"
       },
       {
         icon:'mdi-instagram',

@@ -33,7 +33,7 @@ export default {
   }),
   mounted(){
     axios
-      .get('http://localhost:3000/api/insta')
+      .get('http://korearaon.uz/api/insta')
       .then(res => res.data)
       .then(insta => {
         console.log(insta);

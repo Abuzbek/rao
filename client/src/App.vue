@@ -52,9 +52,15 @@
           </router-link>
         </v-list>
       </v-menu>
-      <v-btn tag="router-link" to="/community" text>
-          <span class="first">Сообщество</span>
-        </v-btn>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn v-bind="attrs" v-on="on" tag="router-link" to="/community" text>        
+  	     <span class="first">Сообщество</span>
+	     <v-icon right>account-multiple </v-icon>      
+          </v-btn>
+        </template>
+        <span>Сообщество</span>
+      </v-tooltip>
       <v-badge :content="`${productLenght}`" :color="'#ff9d72'" overlap>
         <v-btn tag="router-link" to="/checkout" text>
           <span class="first">Aккаунт</span>
@@ -118,11 +124,11 @@ export default {
           title: "O нас",
           item: [
             {
-              name: "RAON бренди",
+              name: "Бренд RAON",
               href: "/brend",
             },
             {
-              name: "RAON история",
+              name: "История RAON",
               href: "/history",
             },
           ],
@@ -248,7 +254,7 @@ export default {
     display: block;
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .imageApp {
     margin-left: 10px;
   }

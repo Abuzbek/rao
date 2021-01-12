@@ -300,7 +300,7 @@ router.post("/insta", upload.single("img"), (req, res, next) => {
 // ============= add carousel =============
 
 //  =================== delete carousel ==============
-router.get("/insta/delete/:id", eA, (req, res, next) => {
+router.get("/insta/delete/:id",  (req, res, next) => {
   Instagram.findByIdAndRemove(req.params.id, (err, data) => {
     if (err) {
       console.log(err);
@@ -330,13 +330,19 @@ router.get("/community",eA, (req, res, next) => {
   });
 });
 router.post("/community", upload.single("img"), (req, res, next) => {
-  console.log(req.file, req.body);
-  const post = new Post({
-    name: req.body.name,
-    description: req.body.description,
-    moment: moment().format('LLL'),
-    img: "/img/" + req.file.filename,
-  });
+       if(req.file.filename){
+	 const post = new Post({                                                                                                                                                   name: req.body.name,
+	   description: req.body.description,
+	   moment: moment().format('LLL'),
+           img: "/img/" + req.file.filename,
+	 });
+        }
+	else if(!req.file.filename) {
+          const post = new Post({                                                                                                                                                   name: req.body.name,
+	    description: req.body.description,
+	    moment: moment().format('LLL')
+	  });
+	}
   post.save((err, data) => {
     if (err) {
       console.log(err);

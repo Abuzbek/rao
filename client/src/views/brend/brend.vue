@@ -15,10 +15,10 @@
             large
             dark
           >
-            RAON бренди
+           Бренд RAON
           </v-btn>
           <v-btn color="white" style="border-radius:0px !important;outline:1px solid black;outline-offset:-4px;" @click="$router.push('/history')"  large>
-            RAON история
+            История RAON
           </v-btn>
         </div>
     </v-container>
@@ -27,9 +27,9 @@
         RAON
       </h1>
       <h2 class="text-center mb-6">
-        На чистом корейском языке это «весело».
+        В переводе с корейского языка - радость.
         <br>
-        Приятная красота. RAON
+        Приятная красота RAON
       </h2>
     </section>
     <Footer/>
@@ -46,7 +46,7 @@ export default {
   }),
   mounted() {
     axios
-      .get('http://localhost:3000/api/back/raon_brend')
+      .get('http://korearaon.uz/api/back/raon_brend')
       .then((res) => res.data)
       .then((post) => {
         console.log(post);

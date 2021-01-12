@@ -125,7 +125,7 @@ export default {
   }),
   mounted(){
     axios
-      .get('http://localhost:3000/api/limit')
+      .get('http://korearaon.uz/api/limit')
       .then(res => res.data)
       .then(product => {
         this.products = product.filter((n,i)=> {
