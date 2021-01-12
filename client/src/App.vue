@@ -55,8 +55,8 @@
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" tag="router-link" to="/community" text>        
-  	     <span class="first">Сообщество</span>
-	     <v-icon right>account-multiple </v-icon>      
+  	    <span class="first">Сообщество</span>
+	    <v-icon right>account-multiple </v-icon>      
           </v-btn>
         </template>
         <span>Сообщество</span>
