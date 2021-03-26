@@ -54,9 +54,15 @@
       </v-menu>
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn v-bind="attrs" v-on="on" tag="router-link" to="/community" text>        
-  	    <span class="first">Сообщество</span>
-	    <v-icon right>account-multiple </v-icon>      
+          <v-btn
+            v-bind="attrs"
+            v-on="on"
+            tag="router-link"
+            to="/community"
+            text
+          >
+            <span class="first">Сообщество</span>
+            <v-icon right>account-multiple </v-icon>
           </v-btn>
         </template>
         <span>Сообщество</span>
@@ -137,8 +143,8 @@ export default {
           title: "Женщины",
           item: [
             {
-              name:'Все',
-              href:"/women/all"
+              name: "Все",
+              href: "/women/all",
             },
             {
               name: "Декоративная Косметика",
@@ -165,17 +171,17 @@ export default {
               href: "/women/Complete_skin_care",
             },
             {
-              name:'НАБОР',
-              href:'/women/set'
-            }
+              name: "НАБОР",
+              href: "/women/set",
+            },
           ],
         },
         {
           title: "TonyMoly",
           item: [
             {
-              name:'Все',
-              href:"/man/all"
+              name: "Все",
+              href: "/man/all",
             },
             {
               name: "Декоративная Косметика",
@@ -202,9 +208,9 @@ export default {
               href: "/man/Complete_skin_care",
             },
             {
-              name:'НАБОР',
-              href:'/women/set'
-            }
+              name: "НАБОР",
+              href: "/women/set",
+            },
           ],
         },
       ],
@@ -258,8 +264,8 @@ export default {
   .imageApp {
     margin-left: 10px;
   }
-  .first{
-    display:none;
+  .first {
+    display: none;
   }
 }
 </style>

@@ -103,7 +103,7 @@ export default {
   },
   async mounted() {
     await axios
-      .get("http://korearaon.uz/api")
+      .get("http://localhost:3000/api")
       .then((res) => res.data)
       .then((card) => {
         console.log(card);
@@ -113,14 +113,14 @@ export default {
         });
       });
     await axios 
-      .get('http://korearaon.uz/api/carousel')
+      .get('http://localhost:3000/api/carousel')
       .then((res) => res.data)
       .then((card) => {
         console.log(card);
         this.banners = card
       });
     await axios
-      .get("http://korearaon.uz/api")
+      .get("http://localhost:3000/api")
       .then((res) => res.data)
       .then((card) => {
         console.log(card);
@@ -130,7 +130,7 @@ export default {
         });
       });
     await axios
-      .get("http://korearaon.uz/api")
+      .get("http://localhost:3000/api")
       .then((res) => res.data)
       .then((card) => {
         console.log(card);

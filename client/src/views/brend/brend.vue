@@ -46,7 +46,7 @@ export default {
   }),
   mounted() {
     axios
-      .get('http://korearaon.uz/api/back/raon_brend')
+      .get('http://localhost:3000/api/back/raon_brend')
       .then((res) => res.data)
       .then((post) => {
         console.log(post);

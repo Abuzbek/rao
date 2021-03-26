@@ -34,7 +34,12 @@ mongoose.connect(dbJson.db, {
 });
 
 const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
 
+db.once('open', function () {
+  console.log('mongoDbga online ulandik');
+});
+//==============mongose conection ==============
 //============== messages ==============
 
 app.use(require('connect-flash')());
@@ -95,20 +100,11 @@ app.set('view engine', 'pug');
 
 
 
-db.on('error', console.error.bind(console, 'connection error:'));
-
-db.once('open', function () {
-  console.log('mongoDbga online ulandik');
-});
-//==============mongose conection ==============
 
 
 
-app.use(cors({
-	origin: 'http://korearaon.uz',
-	optionsSuccessStatus: 200
 
-}))
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

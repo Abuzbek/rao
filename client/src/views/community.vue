@@ -40,14 +40,14 @@ export default {
   },
   mounted() {
     axios
-      .get("http://korearaon.uz/post/api")
+      .get("http://localhost:3000/post/api")
       .then((res) => res.data)
       .then((post) => {
         console.log(post);
         this.post = post.reverse();
       });
     axios
-      .get('http://korearaon.uz/api/back/community') 
+      .get('http://localhost:3000/api/back/community') 
       .then((res) => res.data)
       .then((post) => {
         console.log(post);

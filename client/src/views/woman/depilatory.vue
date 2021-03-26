@@ -55,7 +55,7 @@ export default {
   },
   async mounted() {
     await axios
-      .get("http://korearaon.uz/api")
+      .get("http://localhost:3000/api")
       .then((res) => res.data)
       .then((card) => {
         console.log(card);
@@ -65,7 +65,7 @@ export default {
         });
       });
       axios
-        .get('http://korearaon.uz/api/back/women_sredstva_dlya_depilyasii') 
+        .get('http://localhost:3000/api/back/women_sredstva_dlya_depilyasii') 
         .then((res) => res.data)
         .then((post) => {
           console.log(post);

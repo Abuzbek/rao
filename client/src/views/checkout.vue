@@ -79,7 +79,7 @@ export default {
       send.product = this.products
       send.allPrice = this.productAllPrice
       setTimeout(()=>{
-        axios.post('http://korearaon.uz/admin/user_chechout', send)
+        axios.post('http://localhost:3000/admin/user_chechout', send)
       },100)
     }
   }
